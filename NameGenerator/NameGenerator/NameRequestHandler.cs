@@ -32,6 +32,8 @@ namespace NameGenerator
 			string fileContents = File.ReadAllText(path);
 			fileContents = fileContents.Replace("\n", "");
 			fileContents = fileContents.Replace("\r", "");
+			if (fileContents.EndsWith(","))
+				fileContents = fileContents.Remove(fileContents.Length - 1);
 			CachedNameFiles[path] = fileContents.Split(',');
 		}
 

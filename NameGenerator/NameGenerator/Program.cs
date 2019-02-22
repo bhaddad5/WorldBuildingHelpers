@@ -22,6 +22,8 @@ namespace NameGenerator
 			{
 				Console.WriteLine("Input a file to randomly print from:");
 				string fileToOpen = Console.ReadLine();
+				if (!fileToOpen.EndsWith(".txt"))
+					fileToOpen += ".txt";
 				path = Path.Combine(dataFolderPath, fileToOpen);
 				if (!File.Exists(path))
 					path = null;

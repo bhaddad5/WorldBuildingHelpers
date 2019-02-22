@@ -1,0 +1,4 @@
+{Common/Common Place Adjectives} {Common/Common Mountain Places},
+{Common/Common Place Adjectives} {Common/Common Open Places},
+{Common/Common Place Adjectives} {Common/Common River Places},
+{Common/Common Place Adjectives} {Common/Common Woods Places}
