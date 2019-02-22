@@ -1,0 +1,13 @@
+Misty,
+West,
+East,
+High,
+Red,
+Blue,
+Black,
+Green,
+Fell,
+Sunny,
+Bright,
+Burned,
+Stony
