@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.button1 = new System.Windows.Forms.Button();
-			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+			this.selectedFileContents = new System.Windows.Forms.RichTextBox();
 			this.richTextBox2 = new System.Windows.Forms.RichTextBox();
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.textBox1 = new System.Windows.Forms.TextBox();
@@ -48,14 +48,14 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.SelectFolder_Click);
 			// 
-			// richTextBox1
+			// selectedFileContents
 			// 
-			this.richTextBox1.Location = new System.Drawing.Point(587, 46);
-			this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(423, 581);
-			this.richTextBox1.TabIndex = 2;
-			this.richTextBox1.Text = "";
+			this.selectedFileContents.Location = new System.Drawing.Point(587, 46);
+			this.selectedFileContents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.selectedFileContents.Name = "selectedFileContents";
+			this.selectedFileContents.Size = new System.Drawing.Size(423, 581);
+			this.selectedFileContents.TabIndex = 2;
+			this.selectedFileContents.Text = "";
 			// 
 			// richTextBox2
 			// 
@@ -73,6 +73,7 @@
 			this.treeView1.Name = "treeView1";
 			this.treeView1.Size = new System.Drawing.Size(577, 581);
 			this.treeView1.TabIndex = 5;
+			this.treeView1.BeforeSelect += TreeViewAboutToMakeNewSelection;
 			this.treeView1.AfterSelect += FileSelected;
 			// 
 			// textBox1
@@ -115,7 +116,7 @@
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.richTextBox2);
 			this.Controls.Add(this.button2);
-			this.Controls.Add(this.richTextBox1);
+			this.Controls.Add(this.selectedFileContents);
 			this.Controls.Add(this.button1);
 			this.Name = "NameGen";
 			this.Text = "Name Generator";
@@ -127,7 +128,7 @@
 		#endregion
 
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.RichTextBox richTextBox1;
+		private System.Windows.Forms.RichTextBox selectedFileContents;
 		private System.Windows.Forms.RichTextBox richTextBox2;
 		private System.Windows.Forms.TreeView treeView1;
 		private System.Windows.Forms.TextBox textBox1;

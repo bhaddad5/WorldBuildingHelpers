@@ -99,16 +99,6 @@ namespace NameGeneratorFrontEnd
 				treeView1.Nodes.Add(node);
 		}
 
-		private void FileSelected(object sender, TreeViewEventArgs e)
-		{
-			if (!(e.Node.Tag is FileInfo))
-				return;
-			FileInfo file = (e.Node.Tag as FileInfo);
-			var stream = file.OpenText();
-			richTextBox1.Text = stream.ReadToEnd();
-			stream.Close();
-		}
-
 		private void SaveOpenFile(object sender, EventArgs e)
 		{
 			var currentSelectedFile = treeView1.SelectedNode?.Tag;
@@ -118,7 +108,39 @@ namespace NameGeneratorFrontEnd
 				return;
 			}
 
-			File.WriteAllText((currentSelectedFile as FileInfo).FullName, richTextBox1.Text);
+			File.WriteAllText((currentSelectedFile as FileInfo).FullName, selectedFileContents.Text);
+		}
+
+		private FileInfo currentSelectedFile = null;
+		private void FileSelected(object sender, TreeViewEventArgs e)
+		{
+			if (!(e.Node.Tag is FileInfo))
+				return;
+			currentSelectedFile = (e.Node.Tag as FileInfo);
+			var stream = currentSelectedFile.OpenText();
+			selectedFileContents.Text = stream.ReadToEnd();
+			stream.Close();
+		}
+
+		private void TreeViewAboutToMakeNewSelection(object sender, TreeViewCancelEventArgs e)
+		{
+			if (currentSelectedFile == null)
+				return;
+
+			var stream = currentSelectedFile.OpenText();
+			string currFileText = stream.ReadToEnd();
+			currFileText = currFileText.Replace("\r", "");
+			stream.Close();
+			if (currFileText.Equals(selectedFileContents.Text))
+			{
+				return;
+			}
+
+			DialogResult dialogResult = MessageBox.Show("Save?", "Save Changes?", MessageBoxButtons.YesNo);
+			if (dialogResult == DialogResult.Yes)
+			{
+				File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
+			}
 		}
 	}
 }
