@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NameGenerator;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace NameGeneratorFrontEnd
 {
@@ -21,20 +22,27 @@ namespace NameGeneratorFrontEnd
 
 		private void SelectFolder_Click(object sender, EventArgs e)
 		{
-			using (FolderBrowserDialog openFolderDialog = new FolderBrowserDialog())
+			//Hacky, but MUCH better UX than shitty folder selector
+			using (OpenFileDialog openFolderDialog = new OpenFileDialog())
 			{
-				openFolderDialog.ShowNewFolderButton = true;
+				openFolderDialog.ValidateNames = false;
+				openFolderDialog.CheckFileExists = false;
+				openFolderDialog.CheckPathExists = true;
+				openFolderDialog.FileName = "Folder Selection";
 
 				DialogResult result = openFolderDialog.ShowDialog();
 
-				if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(openFolderDialog.SelectedPath))
+				if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(openFolderDialog.SafeFileName))
 				{
-					SelectRootFolder(openFolderDialog.SelectedPath);
+					string chosenFolder = Path.GetDirectoryName(openFolderDialog.FileName);
+
+					if (!Directory.Exists(chosenFolder))
+						MessageBox.Show("No Folder Selected", "Please select a folder.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					else
+						SelectRootFolder(chosenFolder);
 				}
 			}
 		}
-
-		//private string currentSelectedFilePath = null;
 
 		private void GenerateNamesList_Click(object sender, EventArgs e)
 		{
