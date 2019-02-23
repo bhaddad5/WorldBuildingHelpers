@@ -64,6 +64,7 @@
 			this.selectedFileContents.Location = new System.Drawing.Point(398, 5);
 			this.selectedFileContents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.selectedFileContents.Name = "selectedFileContents";
+			this.selectedFileContents.ReadOnly = true;
 			this.selectedFileContents.Size = new System.Drawing.Size(386, 662);
 			this.selectedFileContents.TabIndex = 2;
 			this.selectedFileContents.Text = "";
@@ -78,6 +79,7 @@
 			this.richTextBox2.Location = new System.Drawing.Point(792, 5);
 			this.richTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.richTextBox2.Name = "richTextBox2";
+			this.richTextBox2.ReadOnly = true;
 			this.richTextBox2.Size = new System.Drawing.Size(387, 662);
 			this.richTextBox2.TabIndex = 4;
 			this.richTextBox2.Text = "";
@@ -89,6 +91,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.BackColor = System.Drawing.SystemColors.MenuText;
 			this.treeView1.ForeColor = System.Drawing.SystemColors.Menu;
+			this.treeView1.ItemHeight = 20;
 			this.treeView1.Location = new System.Drawing.Point(4, 5);
 			this.treeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.treeView1.Name = "treeView1";

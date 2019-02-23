@@ -17,6 +17,7 @@ namespace NameGeneratorFrontEnd
 			this.button3.Click += SaveOpenFile;
 			this.KeyDown += CheckSave;
 			this.KeyPreview = true;
+			this.textBox1.TextChanged += TypedInFile;
 		}
 
 		private void SelectFolder_Click(object sender, EventArgs e)
@@ -252,11 +253,15 @@ namespace NameGeneratorFrontEnd
 		private FileInfo currentSelectedFile = null;
 		private void FileSelected(object sender, TreeViewEventArgs e)
 		{
+			currentSelectedFile = null;
+			selectedFileContents.Text = "";
+			selectedFileContents.ReadOnly = true;
 			if (!(e.Node.Tag is FileInfo))
 				return;
 			currentSelectedFile = (e.Node.Tag as FileInfo);
 			var stream = currentSelectedFile.OpenText();
 			selectedFileContents.Text = stream.ReadToEnd();
+			selectedFileContents.ReadOnly = false;
 			stream.Close();
 		}
 
@@ -287,6 +292,11 @@ namespace NameGeneratorFrontEnd
 			{
 				SaveOpenFile(null, null);
 			}
+		}
+
+		private void TypedInFile(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
