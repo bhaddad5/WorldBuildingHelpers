@@ -50,6 +50,8 @@
 			// 
 			// selectedFileContents
 			// 
+			this.selectedFileContents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.selectedFileContents.Location = new System.Drawing.Point(587, 46);
 			this.selectedFileContents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.selectedFileContents.Name = "selectedFileContents";
@@ -59,6 +61,8 @@
 			// 
 			// richTextBox2
 			// 
+			this.richTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.richTextBox2.Location = new System.Drawing.Point(1022, 46);
 			this.richTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.richTextBox2.Name = "richTextBox2";
@@ -68,6 +72,8 @@
 			// 
 			// treeView1
 			// 
+			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
 			this.treeView1.Location = new System.Drawing.Point(2, 46);
 			this.treeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.treeView1.Name = "treeView1";
