@@ -1,0 +1,10 @@
+Golden,
+Silver,
+Iron,
+Bronze,
+Copper,
+Diamond,
+Emerald,
+Jade,
+Mithral,
+Crystal

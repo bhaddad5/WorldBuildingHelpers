@@ -1,0 +1,12 @@
+Necro,
+Necro,
+Necro,
+Cryo,
+Psycho,
+Pyro,
+Hydro,
+Occlo,
+Astro,
+Cosmo,
+Geo,
+Bio

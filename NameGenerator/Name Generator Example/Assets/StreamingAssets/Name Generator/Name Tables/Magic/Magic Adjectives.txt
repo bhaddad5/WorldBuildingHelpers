@@ -1,0 +1,12 @@
+Forgotten,
+Forbidden,
+Cursed,
+Unholy,
+Holy,
+Dark,
+Bright,
+Lost,
+Ancient,
+Fallen,
+Accursed,
+Arcane
