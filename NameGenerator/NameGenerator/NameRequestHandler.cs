@@ -4,7 +4,7 @@ using System.IO;
 
 namespace NameGenerator
 {
-	class NameRequestHandler
+	public class NameRequestHandler
 	{
 		private Dictionary<string, string[]> CachedNameFiles = new Dictionary<string, string[]>();
 		private Random Rand = new Random();

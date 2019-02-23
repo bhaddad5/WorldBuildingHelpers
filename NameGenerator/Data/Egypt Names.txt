@@ -1,2 +1,2 @@
-{Egypt/Egypt Name Prefixes}{Egype/Egypt Name Suffixes} {Common/Numbers},
-{Egypt/Egypt Name Prefixes}{Egype/Egypt Name Suffixes}
+{Egypt/Egypt Name Prefixes}{Egypt/Egypt Name Suffixes} {Common/Numbers},
+{Egypt/Egypt Name Prefixes}{Egypt/Egypt Name Suffixes}
