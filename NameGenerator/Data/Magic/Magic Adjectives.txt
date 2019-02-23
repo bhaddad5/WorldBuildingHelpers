@@ -8,4 +8,5 @@ Bright,
 Lost,
 Ancient,
 Fallen,
-Accursed
+Accursed,
+Arcane

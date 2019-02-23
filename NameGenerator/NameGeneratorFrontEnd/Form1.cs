@@ -11,6 +11,12 @@ namespace NameGeneratorFrontEnd
 		public NameGen()
 		{
 			InitializeComponent();
+
+			this.treeView1.BeforeSelect += TreeViewAboutToMakeNewSelection;
+			this.treeView1.AfterSelect += FileSelected;
+			this.button3.Click += SaveOpenFile;
+			this.KeyDown += CheckSave;
+			this.KeyPreview = true;
 		}
 
 		private void SelectFolder_Click(object sender, EventArgs e)
@@ -272,6 +278,14 @@ namespace NameGeneratorFrontEnd
 			if (dialogResult == DialogResult.Yes)
 			{
 				File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
+			}
+		}
+
+		private void CheckSave(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.S && e.Modifiers == Keys.Control)
+			{
+				SaveOpenFile(null, null);
 			}
 		}
 	}

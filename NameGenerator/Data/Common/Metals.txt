@@ -6,4 +6,5 @@ Copper,
 Diamond,
 Emerald,
 Jade,
-Mithral
+Mithral,
+Crystal
