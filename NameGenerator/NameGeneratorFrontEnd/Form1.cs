@@ -30,10 +30,6 @@ namespace NameGeneratorFrontEnd
 				if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(openFolderDialog.SelectedPath))
 				{
 					SelectRootFolder(openFolderDialog.SelectedPath);
-
-					string[] files = Directory.GetFiles(openFolderDialog.SelectedPath);
-
-					System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
 				}
 			}
 		}
@@ -101,6 +97,28 @@ namespace NameGeneratorFrontEnd
 				parent.Nodes.Add(node);
 			else
 				treeView1.Nodes.Add(node);
+		}
+
+		private void FileSelected(object sender, TreeViewEventArgs e)
+		{
+			if (!(e.Node.Tag is FileInfo))
+				return;
+			FileInfo file = (e.Node.Tag as FileInfo);
+			var stream = file.OpenText();
+			richTextBox1.Text = stream.ReadToEnd();
+			stream.Close();
+		}
+
+		private void SaveOpenFile(object sender, EventArgs e)
+		{
+			var currentSelectedFile = treeView1.SelectedNode?.Tag;
+			if (currentSelectedFile == null || !(currentSelectedFile is FileInfo))
+			{
+				MessageBox.Show("No Table Selected", "Not currently editing any name table.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			File.WriteAllText((currentSelectedFile as FileInfo).FullName, richTextBox1.Text);
 		}
 	}
 }

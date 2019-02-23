@@ -34,6 +34,7 @@
 			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.button2 = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// button1
@@ -49,19 +50,19 @@
 			// 
 			// richTextBox1
 			// 
-			this.richTextBox1.Location = new System.Drawing.Point(602, 46);
+			this.richTextBox1.Location = new System.Drawing.Point(587, 46);
 			this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(408, 581);
+			this.richTextBox1.Size = new System.Drawing.Size(423, 581);
 			this.richTextBox1.TabIndex = 2;
 			this.richTextBox1.Text = "";
 			// 
 			// richTextBox2
 			// 
-			this.richTextBox2.Location = new System.Drawing.Point(1022, 92);
+			this.richTextBox2.Location = new System.Drawing.Point(1022, 46);
 			this.richTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.richTextBox2.Name = "richTextBox2";
-			this.richTextBox2.Size = new System.Drawing.Size(344, 535);
+			this.richTextBox2.Size = new System.Drawing.Size(344, 581);
 			this.richTextBox2.TabIndex = 4;
 			this.richTextBox2.Text = "";
 			// 
@@ -70,12 +71,13 @@
 			this.treeView1.Location = new System.Drawing.Point(2, 46);
 			this.treeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(589, 581);
+			this.treeView1.Size = new System.Drawing.Size(577, 581);
 			this.treeView1.TabIndex = 5;
+			this.treeView1.AfterSelect += FileSelected;
 			// 
 			// textBox1
 			// 
-			this.textBox1.Location = new System.Drawing.Point(1218, 46);
+			this.textBox1.Location = new System.Drawing.Point(1218, 4);
 			this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.Size = new System.Drawing.Size(148, 26);
@@ -84,7 +86,7 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(1022, 46);
+			this.button2.Location = new System.Drawing.Point(1022, 0);
 			this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(186, 35);
@@ -93,11 +95,22 @@
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.GenerateNamesList_Click);
 			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(587, 0);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(157, 35);
+			this.button3.TabIndex = 7;
+			this.button3.Text = "Save";
+			this.button3.UseVisualStyleBackColor = true;
+			this.button3.Click += SaveOpenFile;
+			// 
 			// NameGen
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1386, 635);
+			this.Controls.Add(this.button3);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.treeView1);
 			this.Controls.Add(this.richTextBox2);
@@ -119,6 +132,7 @@
 		private System.Windows.Forms.TreeView treeView1;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button3;
 	}
 }
 

@@ -2,4 +2,6 @@ Mount,
 Mountain,
 Crag,
 Vale,
-Cliff
+Cliff,
+Valley,
+Peak
