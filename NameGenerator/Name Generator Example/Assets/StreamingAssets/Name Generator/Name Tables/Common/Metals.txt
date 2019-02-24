@@ -7,4 +7,5 @@ Diamond,
 Emerald,
 Jade,
 Mithral,
-Crystal
+Crystal,
+Coal

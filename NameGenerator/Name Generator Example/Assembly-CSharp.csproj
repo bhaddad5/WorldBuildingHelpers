@@ -61,13 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Name Generator\ExampleS\NameGeneratorExample.cs" />
+    <Compile Include="Assets\Name Generator\Examples\NameGeneratorExample.cs" />
     <Compile Include="Assets\Name Generator\NameGeneratorWrapper.cs" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Woods Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Suffixes.txt" />
-    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Gods.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Suffixes.txt" />

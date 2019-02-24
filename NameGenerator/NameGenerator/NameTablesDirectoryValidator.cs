@@ -46,7 +46,13 @@ namespace NameGenerator
 			{
 				if (entry.Contains("{"))
 				{
-					foreach (string r in GetRefsFromEntry(entry))
+					var refs = GetRefsFromEntry(entry);
+					if (errorMsg != null)
+					{
+						errorMsg += $"\n\nIn table:\n{myTablePath}";
+						return false;
+					}
+					foreach (string r in refs)
 					{
 						var tableReferencePath = Path.Combine(Path.GetDirectoryName(myTablePath), r);
 						if (visitedTables.Contains(tableReferencePath))
@@ -77,10 +83,22 @@ namespace NameGenerator
 			{
 				if (c == '{')
 				{
+					if (currentBuilderStr != null)
+					{
+						errorMsg = $"Invalid brace formatting in entry:\n{entry}";
+						return new List<string>();
+					}
+
 					currentBuilderStr = "";
 				}
 				else if (c == '}')
 				{
+					if (currentBuilderStr == null)
+					{
+						errorMsg = $"Invalid brace formatting in entry:\n{entry}";
+						return new List<string>();
+					}
+
 					if (!currentBuilderStr.EndsWith(".txt"))
 						currentBuilderStr += ".txt";
 					refs.Add(currentBuilderStr);
@@ -90,6 +108,11 @@ namespace NameGenerator
 				{
 					currentBuilderStr += c;
 				}
+			}
+
+			if (currentBuilderStr != null)
+			{
+				errorMsg = $"Unclosed '{{' in entry:\n{entry}";
 			}
 			return refs;
 		}

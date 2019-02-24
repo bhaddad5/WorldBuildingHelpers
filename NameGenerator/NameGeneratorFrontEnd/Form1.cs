@@ -185,9 +185,14 @@ namespace NameGeneratorFrontEnd
 			if (dialogResult == DialogResult.Yes)
 			{
 				if (node.Tag is FileInfo)
+				{
+					if (currentSelectedFile == (node.Tag as FileInfo))
+						currentSelectedFile = null;
 					(node.Tag as FileInfo).Delete();
+				}
 				if (node.Tag is DirectoryInfo)
 					DeleteDirectory((node.Tag as DirectoryInfo).FullName);
+				
 				node.Remove();
 			}
 		}
@@ -350,7 +355,8 @@ namespace NameGeneratorFrontEnd
 			NameTablesDirectoryValidator validator = new NameTablesDirectoryValidator();
 			if (treeView1.Nodes.Count == 0)
 				return;
-			if(!validator.ValidateDirectory((treeView1.Nodes[0].Tag as DirectoryInfo).FullName))
+			SaveOpenFile(null, null);
+			if (!validator.ValidateDirectory((treeView1.Nodes[0].Tag as DirectoryInfo).FullName))
 			{
 				MessageBox.Show(validator.errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
