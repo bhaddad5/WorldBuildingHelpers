@@ -103,10 +103,13 @@ namespace NameGeneratorFrontEnd
 		{
 			MenuItem newFolderButton = new MenuItem("Create New Folder", (sender, args) => HandleMakeNewFolder(dir, dirNode));
 			MenuItem newFileButton = new MenuItem("Create New Table", (sender, args) => HandleMakeNewTable(dir, dirNode));
+			MenuItem renameFolderButton = new MenuItem("Rename Folder", (sender, args) => HandleRenameTableOrDirectory(dirNode));
 			MenuItem deleteFolderButton = new MenuItem("Delete Folder", (sender, args) => HandleDeleteTableOrDirectory(dirNode));
 			var cm = new ContextMenu();
 			cm.MenuItems.Add(newFolderButton);
 			cm.MenuItems.Add(newFileButton);
+			cm.MenuItems.Add("-");
+			cm.MenuItems.Add(renameFolderButton);
 			cm.MenuItems.Add("-");
 			cm.MenuItems.Add(deleteFolderButton);
 			return cm;
@@ -115,9 +118,58 @@ namespace NameGeneratorFrontEnd
 		private ContextMenu FileContextMenu(TreeNode fileNode)
 		{
 			MenuItem deleteFolderButton = new MenuItem("Delete Table", (sender, args) => HandleDeleteTableOrDirectory(fileNode));
+			MenuItem renameFileButton = new MenuItem("Rename File", (sender, args) => HandleRenameTableOrDirectory(fileNode));
 			var cm = new ContextMenu();
+			cm.MenuItems.Add(renameFileButton);
+			cm.MenuItems.Add("-");
 			cm.MenuItems.Add(deleteFolderButton);
 			return cm;
+		}
+
+		private void HandleRenameTableOrDirectory(TreeNode node)
+		{
+			string newName = FileDialog("Rename", "Enter new name:", node.Text);
+			if (String.IsNullOrEmpty(newName))
+				return;
+
+			string startingPath = null;
+			string newPath = null;
+			if (node.Tag is FileInfo)
+			{
+				startingPath = Path.Combine((node.Tag as FileInfo).DirectoryName, (node.Tag as FileInfo).Name);
+				newPath = Path.Combine((node.Tag as FileInfo).DirectoryName, newName);
+				if (!newPath.EndsWith(".txt"))
+					newPath += ".txt";
+			}
+			if (node.Tag is DirectoryInfo)
+			{
+				startingPath = (node.Tag as DirectoryInfo).FullName;
+				newPath = Path.Combine((node.Tag as DirectoryInfo).Parent.FullName, newName);
+			}
+			
+			var invalidChar = newName.IndexOfAny(Path.GetInvalidFileNameChars());
+			if (invalidChar >= 0 || File.Exists(newPath))
+			{
+				MessageBox.Show("Please enter a valid new file name.", "Invalid new file name.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			if (node.Tag is FileInfo)
+			{
+				File.Move(startingPath, newPath);
+
+				var newFileInfo = new FileInfo(newPath);
+				if (currentSelectedFile == node.Tag)
+					currentSelectedFile = newFileInfo;
+				node.Tag = newFileInfo;
+			}
+
+			if (node.Tag is DirectoryInfo)
+			{
+				Directory.Move(startingPath, newPath);
+				node.Tag = new DirectoryInfo(newPath);
+			}
+			node.Text = newName;
 		}
 
 		private void HandleDeleteTableOrDirectory(TreeNode node)
@@ -161,15 +213,14 @@ namespace NameGeneratorFrontEnd
 
 		private void HandleMakeNewFolder(DirectoryInfo dir, TreeNode dirNode)
 		{
-			string newFolderName = FileDialog("Make a new Folder", "New Folder Name:");
+			string newFolderName = FileDialog("Make a new Folder", "New Folder Name:", "");
 			if (String.IsNullOrEmpty(newFolderName))
 				return;
 
 			string path = Path.Combine(dir.FullName, newFolderName);
 
 			var invalidChar = newFolderName.IndexOfAny(Path.GetInvalidFileNameChars());
-			if (invalidChar >= 0 ||
-			    File.Exists(path))
+			if (invalidChar >= 0 || File.Exists(path))
 			{
 				MessageBox.Show("Please enter a valid new file name.", "Invalid new file name", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -181,7 +232,7 @@ namespace NameGeneratorFrontEnd
 
 		private void HandleMakeNewTable(DirectoryInfo dir, TreeNode dirNode)
 		{
-			string newTableName = FileDialog("Make a new Table", "New Table Name:");
+			string newTableName = FileDialog("Make a new Table", "New Table Name:", "");
 
 			if (String.IsNullOrEmpty(newTableName))
 				return;
@@ -191,8 +242,7 @@ namespace NameGeneratorFrontEnd
 			string path = Path.Combine(dir.FullName, newTableName);
 
 			var invalidChar = newTableName.IndexOfAny(Path.GetInvalidFileNameChars());
-			if (invalidChar >= 0 ||
-			    File.Exists(path))
+			if (invalidChar >= 0 || File.Exists(path))
 			{
 				MessageBox.Show("Please enter a valid new file name.", "Invalid new file name", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -204,7 +254,7 @@ namespace NameGeneratorFrontEnd
 			treeView1.SelectedNode = node;
 		}
 
-		private string FileDialog(string text, string caption)
+		private string FileDialog(string text, string caption, string startingStr)
 		{
 			Form prompt = new Form()
 			{
@@ -215,7 +265,7 @@ namespace NameGeneratorFrontEnd
 				StartPosition = FormStartPosition.CenterScreen
 			};
 			Label textLabel = new Label() { Left = 50, Top = 20, Text = text };
-			TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400 };
+			TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 400, Text = startingStr };
 			Button confirmation = new Button() { Text = "Ok", Left = 350, Width = 100, Top = 70, DialogResult = DialogResult.OK };
 			confirmation.Click += (sender, e) => { prompt.Close(); };
 			prompt.Controls.Add(textBox);
