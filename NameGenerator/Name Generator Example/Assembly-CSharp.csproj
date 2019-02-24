@@ -61,7 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Name Generator\NameGeneratorComponent.cs" />
+    <Compile Include="Assets\Name Generator\ExampleS\NameGeneratorExample.cs" />
+    <Compile Include="Assets\Name Generator\NameGeneratorWrapper.cs" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Woods Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Prefixes.txt" />
@@ -82,7 +83,9 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Metals.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Place Adjectives.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt Names.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Pyramid Types.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Suffixes.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Ancient Pyramid.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common River Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo Castles.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Prefixes.txt" />

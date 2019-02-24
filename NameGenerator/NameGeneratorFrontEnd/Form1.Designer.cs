@@ -61,6 +61,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.selectedFileContents.BackColor = System.Drawing.SystemColors.MenuText;
+			this.selectedFileContents.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.selectedFileContents.ForeColor = System.Drawing.SystemColors.Menu;
 			this.selectedFileContents.Location = new System.Drawing.Point(398, 5);
 			this.selectedFileContents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -76,6 +77,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.richTextBox2.BackColor = System.Drawing.SystemColors.MenuText;
+			this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.richTextBox2.ForeColor = System.Drawing.SystemColors.Menu;
 			this.richTextBox2.Location = new System.Drawing.Point(792, 5);
 			this.richTextBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -91,6 +93,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.treeView1.BackColor = System.Drawing.SystemColors.MenuText;
+			this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.treeView1.ForeColor = System.Drawing.SystemColors.Menu;
 			this.treeView1.ItemHeight = 20;
 			this.treeView1.Location = new System.Drawing.Point(4, 5);

@@ -1,0 +1,8 @@
+Pyramid,
+Pyramid,
+Pyramid,
+Necropolis,
+Catacombs,
+Temple,
+Tomb,
+Mortuary
