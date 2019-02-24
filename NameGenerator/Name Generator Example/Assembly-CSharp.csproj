@@ -62,12 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Name Generator\NameGeneratorComponent.cs" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Woods Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Gods.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Open Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo Places.txt" />
@@ -76,7 +78,6 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Magic\Magic Adjectives.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Place Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Name Suffixes.txt" />
-    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf Names.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Metals.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Place Adjectives.txt" />

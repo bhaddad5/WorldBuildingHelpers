@@ -18,6 +18,7 @@ namespace NameGeneratorFrontEnd
 			this.KeyDown += CheckSave;
 			this.KeyPreview = true;
 			this.textBox1.TextChanged += TypedInFile;
+			this.button4.Click += ValidateCurrentDirectory;
 		}
 
 		private void SelectFolder_Click(object sender, EventArgs e)
@@ -341,6 +342,21 @@ namespace NameGeneratorFrontEnd
 			if (e.KeyCode == Keys.S && e.Modifiers == Keys.Control)
 			{
 				SaveOpenFile(null, null);
+			}
+		}
+
+		private void ValidateCurrentDirectory(object sender, EventArgs e)
+		{
+			NameTablesDirectoryValidator validator = new NameTablesDirectoryValidator();
+			if (treeView1.Nodes.Count == 0)
+				return;
+			if(!validator.ValidateDirectory((treeView1.Nodes[0].Tag as DirectoryInfo).FullName))
+			{
+				MessageBox.Show(validator.errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			else
+			{
+				MessageBox.Show( "No problems detected with current tables :)", "All good!", MessageBoxButtons.OK, MessageBoxIcon.None);
 			}
 		}
 

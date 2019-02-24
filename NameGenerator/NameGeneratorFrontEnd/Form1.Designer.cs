@@ -38,6 +38,7 @@
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.button4 = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -148,6 +149,7 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.panel1.Controls.Add(this.button4);
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.button3);
 			this.panel1.Controls.Add(this.textBox1);
@@ -173,6 +175,15 @@
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(1189, 728);
 			this.tableLayoutPanel2.TabIndex = 10;
+			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(690, 0);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(177, 35);
+			this.button4.TabIndex = 8;
+			this.button4.Text = "Validate All Tables";
+			this.button4.UseVisualStyleBackColor = true;
 			// 
 			// NameGen
 			// 
@@ -203,6 +214,7 @@
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+		private System.Windows.Forms.Button button4;
 	}
 }
 

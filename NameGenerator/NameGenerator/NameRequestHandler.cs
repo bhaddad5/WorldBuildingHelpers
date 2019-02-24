@@ -23,18 +23,9 @@ namespace NameGenerator
 
 		private void GetAndCacheNameFiles(string path)
 		{
-			if (!File.Exists(path))
-			{
-				Console.WriteLine("Could not find file: " + path);
-				return;
-			}
-
-			string fileContents = File.ReadAllText(path);
-			fileContents = fileContents.Replace("\n", "");
-			fileContents = fileContents.Replace("\r", "");
-			if (fileContents.EndsWith(","))
-				fileContents = fileContents.Remove(fileContents.Length - 1);
-			CachedNameFiles[path] = fileContents.Split(',');
+			var parsedRes = CommonTableHandlers.ParseNamesFromFile(path);
+			if(parsedRes.Length > 0)
+				CachedNameFiles[path] = parsedRes;
 		}
 
 		private string GetNameFromCachedList(string path)

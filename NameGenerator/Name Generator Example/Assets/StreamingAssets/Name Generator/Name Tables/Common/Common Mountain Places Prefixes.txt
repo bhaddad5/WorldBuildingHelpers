@@ -1,4 +1,6 @@
 Vale,
 Mount,
 Mines of,
-Caves of
+{Metals} Mines of,
+Caves of,
+Cliffs of
