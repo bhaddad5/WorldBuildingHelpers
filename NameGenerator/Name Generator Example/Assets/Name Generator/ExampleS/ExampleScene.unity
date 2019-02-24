@@ -365,13 +365,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Fantasy Ruler
+    - m_Text: Fantasy Castle
       m_Image: {fileID: 0}
     - m_Text: Ancient Pyramid
       m_Image: {fileID: 0}
     - m_Text: Dwarf Hold
-      m_Image: {fileID: 0}
-    - m_Text: Anglo Castles
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1092,7 +1090,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fantasy Ruler
+  m_Text: Fantasy Castle
 --- !u!222 &1440925811
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -67,6 +67,7 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Woods Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Suffixes.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Fantasy Castle.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Gods.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Suffixes.txt" />
@@ -86,7 +87,6 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Ancient Pyramid.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common River Places.txt" />
-    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo Castles.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Prefixes.txt" />
