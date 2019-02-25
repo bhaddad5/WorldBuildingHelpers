@@ -68,10 +68,12 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Fantasy Castle.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Name Midfixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Place Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Gods.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common Places.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Open Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Suffixes.txt" />
@@ -87,6 +89,7 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Ancient Pyramid.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common River Places.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Names.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Prefixes.txt" />
@@ -94,6 +97,7 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Magic\Mancer Types.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Numbers.txt" />
     <None Include="Assets\Forge of Worlds - Name Generator\Readme.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Name Suffixes.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Bert/Documents/Unity Projects/WorldBuildingHelpers/NameGenerator/Name Generator Example/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

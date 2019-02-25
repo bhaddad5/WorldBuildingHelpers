@@ -15,7 +15,8 @@ namespace NameGenerator
 			DirectoryInfo dir = new DirectoryInfo(path);
 			foreach (DirectoryInfo subDir in dir.GetDirectories())
 			{
-				ValidateDirectory(subDir.FullName);
+				if (!ValidateDirectory(subDir.FullName))
+					return false;
 			}
 
 			foreach (FileInfo file in dir.GetFiles())
@@ -60,7 +61,7 @@ namespace NameGenerator
 							errorMsg = $"Circular dependency present.\n\nTable can loop back on itself:\n{tableReferencePath}";
 							return false;
 						}
-
+						
 						if (!File.Exists(tableReferencePath))
 						{
 							errorMsg = $"File not found.\n\nCould not find:\n{tableReferencePath}\n\nReferenced from:\n{myTablePath}";
