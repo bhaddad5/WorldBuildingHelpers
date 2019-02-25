@@ -9,4 +9,6 @@ Lost,
 Ancient,
 Fallen,
 Accursed,
-Arcane
+Arcane,
+Frozen,
+Fiery

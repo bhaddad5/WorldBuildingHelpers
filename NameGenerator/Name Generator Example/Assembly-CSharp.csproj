@@ -61,8 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Name Generator\Examples\NameGeneratorExample.cs" />
-    <Compile Include="Assets\Name Generator\NameGeneratorWrapper.cs" />
+    <Compile Include="Assets\Forge of Worlds - Name Generator\Demo\NameGeneratorExample.cs" />
+    <Compile Include="Assets\Forge of Worlds - Name Generator\Scripts\NameGeneratorWrapper.cs" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Woods Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Prefixes.txt" />
@@ -90,8 +90,10 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Prefixes.txt" />
+    <None Include="Assets\Forge of Worlds - Name Generator\License.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Magic\Mancer Types.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Numbers.txt" />
+    <None Include="Assets\Forge of Worlds - Name Generator\Readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Bert/Documents/Unity Projects/WorldBuildingHelpers/NameGenerator/Name Generator Example/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -309,7 +311,7 @@
       <HintPath>C:/Users/Bert/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="NameGenerator">
-      <HintPath>C:/Users/Bert/Documents/Unity Projects/WorldBuildingHelpers/NameGenerator/Name Generator Example/Assets/Name Generator/Plugins/NameGenerator.dll</HintPath>
+      <HintPath>C:/Users/Bert/Documents/Unity Projects/WorldBuildingHelpers/NameGenerator/Name Generator Example/Assets/Forge of Worlds - Name Generator/Plugins/NameGenerator.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

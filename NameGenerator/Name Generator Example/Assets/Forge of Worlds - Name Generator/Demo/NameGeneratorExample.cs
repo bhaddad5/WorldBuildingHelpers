@@ -10,11 +10,10 @@ public class NameGeneratorExample : MonoBehaviour
 {
 	public Dropdown Dropdown;
 	public Text DisplayText;
-	private NameGeneratorWrapper nameGenerator = new NameGeneratorWrapper();
 
 	public void GenerateName()
 	{
 		string dropdownValue = Dropdown.options[Dropdown.value].text;
-		DisplayText.text = nameGenerator.GenerateNames(dropdownValue, 1).FirstOrDefault();
+		DisplayText.text = NameGeneratorUnity.GenerateName(dropdownValue);
 	}
 }

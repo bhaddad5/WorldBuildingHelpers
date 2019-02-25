@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using NameGenerator;
 using UnityEngine;
 
-public class NameGeneratorWrapper
+public static class NameGeneratorUnity
 {
-	public List<string> GenerateNames(string nameTable, int numToGenerate)
+	public static string GenerateName(string nameTable)
+	{
+		return GenerateNames(nameTable, 1).FirstOrDefault();
+	}
+
+	public static List<string> GenerateNames(string nameTable, int numToGenerate)
 	{
 		if (!nameTable.EndsWith(".txt"))
 			nameTable += ".txt";

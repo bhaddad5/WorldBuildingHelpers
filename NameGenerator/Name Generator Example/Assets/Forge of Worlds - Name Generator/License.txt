@@ -1,0 +1,2 @@
+﻿This software is distributed under the Unity Store End User License Agreement:
+http://unity3d.com/legal/as_terms
