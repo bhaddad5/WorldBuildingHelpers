@@ -355,7 +355,8 @@ namespace NameGeneratorFrontEnd
 			NameTablesDirectoryValidator validator = new NameTablesDirectoryValidator();
 			if (treeView1.Nodes.Count == 0)
 				return;
-			SaveOpenFile(null, null);
+			if(currentSelectedFile != null)
+				SaveOpenFile(null, null);
 			if (!validator.ValidateDirectory((treeView1.Nodes[0].Tag as DirectoryInfo).FullName))
 			{
 				MessageBox.Show(validator.errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

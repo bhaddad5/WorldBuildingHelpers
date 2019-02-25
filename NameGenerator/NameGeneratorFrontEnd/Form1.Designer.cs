@@ -37,8 +37,8 @@
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.button4 = new System.Windows.Forms.Button();
+			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -95,6 +95,7 @@
 			this.treeView1.BackColor = System.Drawing.SystemColors.MenuText;
 			this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
 			this.treeView1.ForeColor = System.Drawing.SystemColors.Menu;
+			this.treeView1.HideSelection = false;
 			this.treeView1.ItemHeight = 20;
 			this.treeView1.Location = new System.Drawing.Point(4, 5);
 			this.treeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -163,6 +164,15 @@
 			this.panel1.Size = new System.Drawing.Size(1183, 44);
 			this.panel1.TabIndex = 9;
 			// 
+			// button4
+			// 
+			this.button4.Location = new System.Drawing.Point(690, 0);
+			this.button4.Name = "button4";
+			this.button4.Size = new System.Drawing.Size(177, 35);
+			this.button4.TabIndex = 8;
+			this.button4.Text = "Validate All Tables";
+			this.button4.UseVisualStyleBackColor = true;
+			// 
 			// tableLayoutPanel2
 			// 
 			this.tableLayoutPanel2.ColumnCount = 1;
@@ -178,15 +188,6 @@
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(1189, 728);
 			this.tableLayoutPanel2.TabIndex = 10;
-			// 
-			// button4
-			// 
-			this.button4.Location = new System.Drawing.Point(690, 0);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(177, 35);
-			this.button4.TabIndex = 8;
-			this.button4.Text = "Validate All Tables";
-			this.button4.UseVisualStyleBackColor = true;
 			// 
 			// NameGen
 			// 
