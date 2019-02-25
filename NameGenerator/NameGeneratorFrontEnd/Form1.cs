@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using NameGenerator;
@@ -14,6 +15,11 @@ namespace NameGeneratorFrontEnd
 
 			this.treeView1.BeforeSelect += TreeViewAboutToMakeNewSelection;
 			this.treeView1.AfterSelect += FileSelected;
+
+			this.treeView1.ItemDrag += ItemDragged;
+			this.treeView1.DragEnter += ItemDragEnter;
+			this.treeView1.DragDrop += MoveFile;
+
 			this.button3.Click += SaveOpenFile;
 			this.KeyDown += CheckSave;
 			this.KeyPreview = true;
@@ -81,7 +87,8 @@ namespace NameGeneratorFrontEnd
 		private void SelectRootFolder(string path)
 		{
 			treeView1.Nodes.Clear();
-			DisplayDirectory(new DirectoryInfo(path), null);
+			var rootDir = DisplayDirectory(new DirectoryInfo(path), null);
+			rootDir.Expand();
 		}
 
 		private TreeNode DisplayDirectory(DirectoryInfo dir, TreeNode parent)
@@ -161,7 +168,7 @@ namespace NameGeneratorFrontEnd
 
 				var newFileInfo = new FileInfo(newPath);
 				if (currentSelectedFile == node.Tag)
-					currentSelectedFile = newFileInfo;
+					currentSelectedNode.Tag = newFileInfo;
 				node.Tag = newFileInfo;
 			}
 
@@ -187,7 +194,7 @@ namespace NameGeneratorFrontEnd
 				if (node.Tag is FileInfo)
 				{
 					if (currentSelectedFile == (node.Tag as FileInfo))
-						currentSelectedFile = null;
+						currentSelectedNode = null;
 					(node.Tag as FileInfo).Delete();
 				}
 				if (node.Tag is DirectoryInfo)
@@ -306,15 +313,16 @@ namespace NameGeneratorFrontEnd
 			File.WriteAllText((currentSelectedFile as FileInfo).FullName, selectedFileContents.Text);
 		}
 
-		private FileInfo currentSelectedFile = null;
+		private TreeNode currentSelectedNode = null;
+		private FileInfo currentSelectedFile => currentSelectedNode?.Tag as FileInfo;
 		private void FileSelected(object sender, TreeViewEventArgs e)
 		{
-			currentSelectedFile = null;
+			currentSelectedNode = null;
 			selectedFileContents.Text = "";
 			selectedFileContents.ReadOnly = true;
 			if (!(e.Node.Tag is FileInfo))
 				return;
-			currentSelectedFile = (e.Node.Tag as FileInfo);
+			currentSelectedNode = e.Node;
 			var stream = currentSelectedFile.OpenText();
 			selectedFileContents.Text = stream.ReadToEnd();
 			selectedFileContents.ReadOnly = false;
@@ -323,7 +331,7 @@ namespace NameGeneratorFrontEnd
 
 		private void TreeViewAboutToMakeNewSelection(object sender, TreeViewCancelEventArgs e)
 		{
-			if (currentSelectedFile == null || !currentSelectedFile.Exists)
+			if (currentSelectedNode == null || !currentSelectedFile.Exists)
 				return;
 
 			var stream = currentSelectedFile.OpenText();
@@ -335,7 +343,7 @@ namespace NameGeneratorFrontEnd
 				return;
 			}
 
-			DialogResult dialogResult = MessageBox.Show($"Save {currentSelectedFile.Name}?", "Save Changes?", MessageBoxButtons.YesNo);
+			DialogResult dialogResult = MessageBox.Show($"Save {currentSelectedNode.Name}?", "Save Changes?", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
 			{
 				File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
@@ -355,7 +363,7 @@ namespace NameGeneratorFrontEnd
 			NameTablesDirectoryValidator validator = new NameTablesDirectoryValidator();
 			if (treeView1.Nodes.Count == 0)
 				return;
-			if(currentSelectedFile != null)
+			if(currentSelectedNode != null)
 				SaveOpenFile(null, null);
 			if (!validator.ValidateDirectory((treeView1.Nodes[0].Tag as DirectoryInfo).FullName))
 			{
@@ -364,6 +372,46 @@ namespace NameGeneratorFrontEnd
 			else
 			{
 				MessageBox.Show( "No problems detected with current tables :)", "All good!", MessageBoxButtons.OK, MessageBoxIcon.None);
+			}
+		}
+
+		private void ItemDragged(object sender, ItemDragEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				DoDragDrop(e.Item, DragDropEffects.Move);
+			}
+		}
+
+		private void ItemDragEnter(object sender, DragEventArgs e)
+		{
+			Point targetPoint = treeView1.PointToClient(new Point(e.X, e.Y));
+			TreeNode targetNode = treeView1.GetNodeAt(targetPoint);
+			//if (targetNode?.Tag is DirectoryInfo)
+				e.Effect = DragDropEffects.Move;
+		}
+
+		private void MoveFile(object sender, DragEventArgs e)
+		{
+			Point targetPoint = treeView1.PointToClient(new Point(e.X, e.Y));
+			TreeNode targetNode = treeView1.GetNodeAt(targetPoint);
+
+			// Retrieve the node that was dragged.
+			TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+
+			if (targetNode != null && targetNode.Tag is DirectoryInfo)
+			{
+				if (draggedNode.Tag is FileInfo)
+				{
+					(draggedNode.Tag as FileInfo).MoveTo(Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as FileInfo).Name));
+				}
+				if (draggedNode.Tag is DirectoryInfo)
+				{
+					(draggedNode.Tag as DirectoryInfo).MoveTo(Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as DirectoryInfo).Name));
+				}
+				draggedNode.Remove();
+				targetNode.Nodes.Add(draggedNode);
+				targetNode.Expand();
 			}
 		}
 

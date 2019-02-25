@@ -1,4 +1,4 @@
-{Egypt/Pyramid Types} of {Egypt/Egypt Name Prefixes}{Egypt/Egypt Name Suffixes} {Common/Numbers},
+{Egypt/Pyramid Types} of {Egypt/Egypt Male Name},
 {Egypt/Pyramid Types} of the {Magic/Magic Adjectives} {Magic/Magic Nouns},
 {Egypt/Pyramid Types} of {Egypt/Egypt Gods},
 {Egypt/Pyramid Types} of the {Magic/Cosmic Nouns}
