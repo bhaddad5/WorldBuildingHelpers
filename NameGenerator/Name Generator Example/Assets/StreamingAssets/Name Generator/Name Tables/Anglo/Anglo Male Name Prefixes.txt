@@ -7,4 +7,10 @@ And,
 Rod,
 Renl,
 Ren,
-Ar
+Ar,
+Far,
+Bor,
+El,
+Jor,
+Geor,
+Geoff

@@ -69,7 +69,9 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Fantasy Castle.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Name Midfixes.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Female Name.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Place Prefixes.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Fantasy Ruler.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Gods.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common Mountain Places Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common Places.txt" />
@@ -78,6 +80,7 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo Places.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Place Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Magic\Magic Nouns.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Female Ruler Title.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Magic\Magic Adjectives.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Place Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Name Suffixes.txt" />
@@ -88,8 +91,9 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Pyramid Types.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Suffixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Ancient Pyramid.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Female Name Suffix.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Common River Places.txt" />
-    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Names.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Name.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Egypt\Egypt Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Name Prefixes.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Dwarf\Dwarf Place Prefixes.txt" />
@@ -97,6 +101,8 @@
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Magic\Mancer Types.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Common\Numbers.txt" />
     <None Include="Assets\Forge of Worlds - Name Generator\Readme.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Ruler Title.txt" />
+    <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Female Name Prefix.txt" />
     <None Include="Assets\StreamingAssets\Name Generator\Name Tables\Anglo\Anglo Male Name Suffixes.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/Bert/Documents/Unity Projects/WorldBuildingHelpers/NameGenerator/Name Generator Example/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
@@ -308,14 +314,14 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.11f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="NameGenerator">
+      <HintPath>C:/Users/Bert/Documents/Unity Projects/WorldBuildingHelpers/NameGenerator/Name Generator Example/Assets/Forge of Worlds - Name Generator/Plugins/NameGenerator.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Bert/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Bert/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="NameGenerator">
-      <HintPath>C:/Users/Bert/Documents/Unity Projects/WorldBuildingHelpers/NameGenerator/Name Generator Example/Assets/Forge of Worlds - Name Generator/Plugins/NameGenerator.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

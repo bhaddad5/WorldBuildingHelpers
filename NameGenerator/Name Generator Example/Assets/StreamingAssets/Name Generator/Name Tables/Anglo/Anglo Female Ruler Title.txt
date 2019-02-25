@@ -1,0 +1,6 @@
+Queen,
+Dutchess,
+Baroness,
+Lady,
+Trade Princess,
+Princess

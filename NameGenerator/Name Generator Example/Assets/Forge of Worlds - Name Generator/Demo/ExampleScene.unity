@@ -371,6 +371,8 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Dwarf Hold
       m_Image: {fileID: 0}
+    - m_Text: Fantasy Ruler
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

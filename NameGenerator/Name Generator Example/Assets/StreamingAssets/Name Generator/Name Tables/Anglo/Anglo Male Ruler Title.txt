@@ -1,0 +1,7 @@
+King,
+Lord,
+Duke,
+Baron,
+Prince,
+Trade Prince,
+Sir
