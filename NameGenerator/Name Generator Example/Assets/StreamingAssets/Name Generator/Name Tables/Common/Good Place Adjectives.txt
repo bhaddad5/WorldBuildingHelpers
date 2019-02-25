@@ -1,0 +1,12 @@
+Bright,
+Holy,
+Blessed,
+Verdant,
+Sunny,
+High,
+Free,
+Misty,
+Stony,
+Deep,
+Shining,
+Cloudy

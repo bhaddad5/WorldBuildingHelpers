@@ -42,7 +42,8 @@ OK, pheawph, you're good.
 		Generate Names From (ExampleWeapons) => 
 			"Cursed Iron Scimitar",
 			"Golden Blade",
-			"The Shining Sword"
+			"The Shining Sword",
+			"Iron Sword"
 
 	A Name Table assumes that all of its entries have an equal probability of being chosen.  Therefore, if you wish to give some names a higher probability you can include them multiple times.
 

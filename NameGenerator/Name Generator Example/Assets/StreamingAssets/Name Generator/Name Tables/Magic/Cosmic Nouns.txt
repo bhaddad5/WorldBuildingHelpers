@@ -1,0 +1,8 @@
+Sun,
+Moon,
+Stars,
+Star,
+Sky,
+Night,
+Day,
+Planets

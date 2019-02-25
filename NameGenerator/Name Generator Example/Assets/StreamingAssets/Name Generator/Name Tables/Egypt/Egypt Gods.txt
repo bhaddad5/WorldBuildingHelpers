@@ -2,10 +2,4 @@ Kopehk,
 Osirion,
 Amath,
 Horai,
-Septra,
-the Sun,
-the Moon,
-the Stars,
-the Sky,
-the Night,
-the Day
+Septra
