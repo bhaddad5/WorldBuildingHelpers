@@ -403,11 +403,20 @@ namespace NameGeneratorFrontEnd
 			{
 				if (draggedNode.Tag is FileInfo)
 				{
-					(draggedNode.Tag as FileInfo).MoveTo(Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as FileInfo).Name));
+					string oldPath = (draggedNode.Tag as FileInfo).FullName;
+					string newPath = Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as FileInfo).Name);
+					(draggedNode.Tag as FileInfo).MoveTo(newPath);
+					if(treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
+						TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, oldPath, newPath);
 				}
 				if (draggedNode.Tag is DirectoryInfo)
 				{
-					(draggedNode.Tag as DirectoryInfo).MoveTo(Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as DirectoryInfo).Name));
+					string oldPath = (draggedNode.Tag as DirectoryInfo).FullName;
+					string newPath = Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as DirectoryInfo).Name);
+					(draggedNode.Tag as DirectoryInfo).MoveTo(newPath);
+					if (treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
+						TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, oldPath, newPath);
+
 				}
 				draggedNode.Remove();
 				targetNode.Nodes.Add(draggedNode);

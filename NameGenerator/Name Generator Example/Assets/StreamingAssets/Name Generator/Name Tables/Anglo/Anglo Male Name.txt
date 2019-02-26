@@ -1,2 +1,2 @@
-{Anglo Male Name Prefixes}{Anglo Male Name Suffixes},
-{Anglo Male Name Prefixes}{Anglo Male Name Midfixes}{Anglo Male Name Suffixes}
+{Anglo Name Chunks/Anglo Male Name Prefixes}{Anglo Name Chunks/Anglo Male Name Suffixes},
+{Anglo Name Chunks/Anglo Male Name Prefixes}{Anglo Name Chunks/Anglo Male Name Midfixes}{Anglo Name Chunks/Anglo Male Name Suffixes}
