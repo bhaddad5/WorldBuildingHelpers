@@ -176,6 +176,7 @@ namespace NameGeneratorFrontEnd
 			{
 				Directory.Move(startingPath, newPath);
 				node.Tag = new DirectoryInfo(newPath);
+				RecursivePathUpdate(node, startingPath, newPath);
 			}
 			if (treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
 				TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, startingPath, newPath);
@@ -418,11 +419,29 @@ namespace NameGeneratorFrontEnd
 					(draggedNode.Tag as DirectoryInfo).MoveTo(newPath);
 					if (treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
 						TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, oldPath, newPath);
+					RecursivePathUpdate(draggedNode, oldPath, newPath);
 
 				}
 				draggedNode.Remove();
 				targetNode.Nodes.Add(draggedNode);
 				targetNode.Expand();
+			}
+		}
+
+		private void RecursivePathUpdate(TreeNode node, string oldPath, string newPath)
+		{
+			if (oldPath.EndsWith("//"))
+				oldPath = oldPath.Substring(0, oldPath.Length - 2);
+			if (newPath.EndsWith("//"))
+				newPath = newPath.Substring(0, newPath.Length - 2);
+			if (node.Tag is FileInfo && (node.Tag as FileInfo).FullName.Contains(oldPath))
+				node.Tag = new FileInfo((node.Tag as FileInfo).FullName.Replace(oldPath, newPath));
+			if (node.Tag is DirectoryInfo && (node.Tag as DirectoryInfo).FullName.Contains(oldPath))
+				node.Tag = new DirectoryInfo((node.Tag as DirectoryInfo).FullName.Replace(oldPath, newPath));
+
+			foreach (object n in node.Nodes)
+			{
+				RecursivePathUpdate(n as TreeNode, oldPath, newPath);
 			}
 		}
 
