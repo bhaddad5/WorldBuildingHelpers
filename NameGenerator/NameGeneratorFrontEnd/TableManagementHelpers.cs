@@ -12,7 +12,8 @@ namespace NameGeneratorFrontEnd
 	{
 		public static void UpdateNameAcrossAllFiles(string rootDir, string oldPath, string newPath)
 		{
-			UpdateOutgoingRefs(oldPath, newPath);
+			if(newPath.EndsWith(".txt"))
+				UpdateOutgoingRefs(oldPath, newPath);
 
 			foreach (FileInfo file in GetAllFiles(new DirectoryInfo(rootDir)))
 				UpdateRefsInFile(file, oldPath, newPath);
@@ -20,14 +21,52 @@ namespace NameGeneratorFrontEnd
 
 		private static void UpdateOutgoingRefs(string oldPath, string newPath)
 		{
-
+			var refs = ParseAllRefsInFile(newPath);
+			string text = File.ReadAllText(newPath);
+			foreach (string oldRef in refs)
+			{
+				text = text.Replace(oldRef, UpdateOldRefToNewRef(oldRef, oldPath, newPath));
+			}
+			File.WriteAllText(newPath, text);
 		}
 
-		/*private static List<string> ParseAllRefsInFile(string filePath)
+		private static HashSet<string> ParseAllRefsInFile(string filePath)
 		{
+			HashSet<string> refs = new HashSet<string>();
 			string text = File.ReadAllText(filePath);
+			string currBuildingRef = null;
+			foreach (char c in text)
+			{
+				if (c == '{')
+				{
+					currBuildingRef = "";
+				}
+				else if(c == '}')
+				{
+					refs.Add(currBuildingRef);
+					currBuildingRef = null;
+				}
+				else if (currBuildingRef != null)
+				{
+					currBuildingRef += c;
+				}
+			}
 
-		}*/
+			return refs;
+		}
+
+		private static string UpdateOldRefToNewRef(string oldRef, string oldFilePath, string newFilePath)
+		{
+			string oldRefFullDestination = Path.Combine(Path.GetDirectoryName(oldFilePath), oldRef);
+			if (oldRefFullDestination.EndsWith(".txt"))
+				oldRefFullDestination = oldRefFullDestination.Replace(".txt", "");
+
+			string pathRelativeToNewFile = new Uri(newFilePath).MakeRelativeUri(new Uri(oldRefFullDestination)).ToString();
+			pathRelativeToNewFile = pathRelativeToNewFile.Replace("%20", " ");
+			if (pathRelativeToNewFile.EndsWith(".txt"))
+				pathRelativeToNewFile = pathRelativeToNewFile.Replace(".txt", "");
+			return pathRelativeToNewFile;
+		}
 
 		private static void UpdateRefsInFile(FileInfo file, string oldPath, string newPath)
 		{

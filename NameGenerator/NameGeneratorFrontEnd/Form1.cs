@@ -334,9 +334,10 @@ namespace NameGeneratorFrontEnd
 
 		private void TreeViewAboutToMakeNewSelection(object sender, TreeViewCancelEventArgs e)
 		{
-			if (currentSelectedNode == null || !currentSelectedFile.Exists)
+			if (currentSelectedNode == null || !currentSelectedFile.Exists || currentSelectedNode == e.Node)
 				return;
-
+			string currSelectedNodeName = currentSelectedNode.Text;
+			
 			var stream = currentSelectedFile.OpenText();
 			string currFileText = stream.ReadToEnd();
 			currFileText = currFileText.Replace("\r", "");
@@ -345,11 +346,16 @@ namespace NameGeneratorFrontEnd
 			{
 				return;
 			}
+			currentSelectedNode = null;
 
-			DialogResult dialogResult = MessageBox.Show($"Save {currentSelectedNode.Name}?", "Save Changes?", MessageBoxButtons.YesNo);
+			DialogResult dialogResult = MessageBox.Show($"Save {currSelectedNodeName}?", "Save Changes?", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
 			{
 				File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
+			}
+			else
+			{
+				selectedFileContents.Text = "";
 			}
 		}
 
