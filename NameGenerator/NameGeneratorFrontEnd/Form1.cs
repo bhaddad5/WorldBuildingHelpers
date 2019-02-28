@@ -165,7 +165,7 @@ namespace NameGeneratorFrontEnd
 			if (node.Tag is FileInfo)
 			{
 				File.Move(startingPath, newPath);
-
+				
 				var newFileInfo = new FileInfo(newPath);
 				if (currentSelectedFile == node.Tag)
 					currentSelectedNode.Tag = newFileInfo;
@@ -177,6 +177,8 @@ namespace NameGeneratorFrontEnd
 				Directory.Move(startingPath, newPath);
 				node.Tag = new DirectoryInfo(newPath);
 			}
+			if (treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
+				TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, startingPath, newPath);
 			node.Text = newName;
 		}
 

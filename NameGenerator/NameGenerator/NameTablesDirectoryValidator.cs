@@ -102,6 +102,7 @@ namespace NameGenerator
 
 					if (!currentBuilderStr.EndsWith(".txt"))
 						currentBuilderStr += ".txt";
+
 					refs.Add(currentBuilderStr);
 					currentBuilderStr = null;
 				}

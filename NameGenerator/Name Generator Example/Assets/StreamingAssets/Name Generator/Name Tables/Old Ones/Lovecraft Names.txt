@@ -1,0 +1,4 @@
+{Lovecraft Name Prefixes}{Lovecraft Name Suffixes},
+{Lovecraft Name Prefixes}'{Lovecraft Name Prefixes}{Lovecraft Name Suffixes},
+{Lovecraft Name Prefixes}-{Lovecraft Name Suffixes},
+{Lovecraft Name Prefixes}{Lovecraft Name Suffixes} {Lovecraft Name Prefixes}{Lovecraft Name Suffixes},

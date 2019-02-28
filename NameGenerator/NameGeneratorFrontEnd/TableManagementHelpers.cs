@@ -23,6 +23,12 @@ namespace NameGeneratorFrontEnd
 
 		}
 
+		/*private static List<string> ParseAllRefsInFile(string filePath)
+		{
+			string text = File.ReadAllText(filePath);
+
+		}*/
+
 		private static void UpdateRefsInFile(FileInfo file, string oldPath, string newPath)
 		{
 			string pathRelativeToOldFile = new Uri(file.FullName).MakeRelativeUri(new Uri(oldPath)).ToString();

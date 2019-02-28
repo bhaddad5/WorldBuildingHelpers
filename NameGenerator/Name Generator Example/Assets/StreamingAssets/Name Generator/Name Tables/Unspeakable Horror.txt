@@ -1,0 +1,5 @@
+{Old Ones/Lovecraft Names},{Old Ones/Lovecraft Names} the {Old Ones/Professions},{Old Ones/Lovecraft Names} the {Old Ones/Adjectives},{Old Ones/Lovecraft Names} the {Old Ones/Adjectives} {Old Ones/Professions},
+{Old Ones/Lovecraft Names} of the {Old Ones/Places},
+{Old Ones/Lovecraft Names} of the {Old Ones/Adjectives} {Old Ones/Places},
+{Old Ones/Lovecraft Names} the {Old Ones/Professions} of the {Old Ones/Places},
+{Old Ones/Lovecraft Names} the {Old Ones/Professions} of the {Old Ones/Adjectives} {Old Ones/Places},
