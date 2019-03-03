@@ -86,7 +86,7 @@ namespace NameGeneratorFrontEnd
 			}
 
 			NameRequestHandler ReqHandler = new NameRequestHandler();
-			List<string> vals = ReqHandler.HandleNameRequest(currentSelectedFile.FullName, num);
+			List<string> vals = ReqHandler.HandleNameRequest(GetCurrSelectedFile().FullName, num);
 			for (int i = 0; i < vals.Count; i++)
 			{
 				richTextBox2.Text += vals[i];
@@ -247,11 +247,15 @@ namespace NameGeneratorFrontEnd
 				MessageBox.Show("No Table Selected", "Not currently editing any name table.", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-			File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
+			File.WriteAllText(GetCurrSelectedFile().FullName, selectedFileContents.Text);
 		}
 
 		private TreeNode currentSelectedNode = null;
-		private FileInfo currentSelectedFile => new FileInfo(currentSelectedNode?.Tag as string);
+		private FileInfo GetCurrSelectedFile()
+		{
+			return new FileInfo(currentSelectedNode?.Tag as string);
+		}
+
 		private void FileSelected(object sender, TreeViewEventArgs e)
 		{
 			currentSelectedNode = null;
@@ -260,7 +264,7 @@ namespace NameGeneratorFrontEnd
 			if (!File.Exists(e.Node.Tag as string))
 				return;
 			currentSelectedNode = e.Node;
-			var stream = currentSelectedFile.OpenText();
+			var stream = GetCurrSelectedFile().OpenText();
 			selectedFileContents.Text = stream.ReadToEnd();
 			selectedFileContents.ReadOnly = false;
 			stream.Close();
@@ -268,23 +272,23 @@ namespace NameGeneratorFrontEnd
 
 		private void FileTreeViewAboutToMakeNewSelection(object sender, TreeViewCancelEventArgs e)
 		{
-			if (currentSelectedNode == null || !currentSelectedFile.Exists || currentSelectedNode == e.Node)
+			if (currentSelectedNode == null || !GetCurrSelectedFile().Exists || currentSelectedNode == e.Node)
 				return;
 			string currSelectedNodeName = currentSelectedNode.Text;
 			
-			var stream = currentSelectedFile.OpenText();
+			var stream = GetCurrSelectedFile().OpenText();
 			string currFileText = stream.ReadToEnd();
 			currFileText = currFileText.Replace("\r", "");
 			stream.Close();
 			if (currFileText.Equals(selectedFileContents.Text))
 				return;
-			currentSelectedNode = null;
-
 			DialogResult dialogResult = MessageBox.Show($"Save {currSelectedNodeName}?", "Save Changes?", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
-				File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
+				File.WriteAllText(GetCurrSelectedFile().FullName, selectedFileContents.Text);
 			else
 				selectedFileContents.Text = "";
+
+			currentSelectedNode = null;
 		}
 
 		private void CheckSave(object sender, KeyEventArgs e)
