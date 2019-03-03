@@ -30,6 +30,10 @@ namespace NameGeneratorFrontEnd
 			this.KeyDown += CheckSave;
 			this.KeyPreview = true;
 			this.button4.Click += ValidateCurrentDirectory;
+
+			var lastFolder = Properties.Settings.Default["LastFolder"] as string;
+			if (lastFolder != null && Directory.Exists(lastFolder))
+				ShowDirectory(lastFolder);
 		}
 
 		private void SelectFolder_Click(object sender, EventArgs e)
@@ -49,18 +53,20 @@ namespace NameGeneratorFrontEnd
 					string chosenFolder = Path.GetDirectoryName(openFolderDialog.FileName);
 
 					if (!Directory.Exists(chosenFolder))
-					{
 						MessageBox.Show("No Folder Selected", "Please select a folder.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
 					else
-					{
-						treeHandler?.Shutdown();
-						treeHandler = new TreeUiHandler();
-						treeHandler.Setup(chosenFolder, fileTreeView, moveWatcher, DirectoryContextMenu, FileContextMenu);
-						fileTreeView.TopNode.Expand();
-					}
+						ShowDirectory(chosenFolder);
 				}
 			}
+		}
+
+		private void ShowDirectory(string path)
+		{
+			treeHandler?.Shutdown();
+			treeHandler = new TreeUiHandler();
+			treeHandler.Setup(path, fileTreeView, moveWatcher, DirectoryContextMenu, FileContextMenu);
+			Properties.Settings.Default["LastFolder"] = path;
+			Properties.Settings.Default.Save();
 		}
 
 		private void GenerateNamesList_Click(object sender, EventArgs e)

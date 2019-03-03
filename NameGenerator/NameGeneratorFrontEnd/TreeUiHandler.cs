@@ -32,6 +32,7 @@ namespace NameGeneratorFrontEnd
 			moveWatcher.FileMoved += FileSystemOnMoved;
 
 			DisplayDirectory(path, null);
+			GetByTag(path).Expand();
 		}
 
 		private void FileSystemOnMoved(string newPath, string oldPath)
@@ -113,7 +114,7 @@ namespace NameGeneratorFrontEnd
 
 		private TreeNode GetByTag(object tag)
 		{
-			return GetByTagHelper(tag, treeView.TopNode);
+			return GetByTagHelper(tag, treeView.Nodes[0]);
 		}
 
 		private TreeNode GetByTagHelper(object tag, TreeNode node)
