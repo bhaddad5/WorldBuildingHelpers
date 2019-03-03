@@ -1,2 +1,2 @@
-{Anglo/Anglo Male Ruler Title} {Anglo/Anglo Male Name} of {Fantasy Castle},
-{Anglo/Anglo Female Ruler Title} {Anglo/Anglo Female Name} of {Fantasy Castle},
+{Anglo/Anglo Male Ruler Title} {Anglo/Anglo Male Name} of {Anglo/Anglo Castle},
+{Anglo/Anglo Female Ruler Title} {Anglo/Anglo Female Name} of {Anglo/Anglo Castle},

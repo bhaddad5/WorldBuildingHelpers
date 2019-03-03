@@ -1,0 +1,12 @@
+Castle {Anglo Place},
+Fort {Anglo Place},
+{Anglo Place} Fortress,
+{Anglo Place} Castle,
+{Anglo Place} Hold,
+{Anglo Place} Keep,
+{../Common/Common Place} Fortress,
+{../Common/Common Place} Castle,
+{../Common/Common Place} Hold,
+{../Common/Common Place} Keep,
+{../Common/Common Place},
+{Anglo Place}

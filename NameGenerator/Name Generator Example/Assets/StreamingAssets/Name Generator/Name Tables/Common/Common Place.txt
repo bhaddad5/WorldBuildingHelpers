@@ -1,0 +1,10 @@
+{Good Place Adjectives} {Common Mountain Places Suffixes},
+{Evil Place Adjectives} {Common Mountain Places Suffixes},
+{Evil Colors} {Common Mountain Places Suffixes},
+{Good Place Adjectives} {Common Open Places},
+{Generic Colors} {Common Open Places},
+{Good Place Adjectives} {Common River Places},
+{Generic Colors} {Common River Places},
+{Evil Place Adjectives} {Common Woods Places},
+{Generic Colors} {Common Woods Places},
+{Good Place Adjectives} {Common Woods Places}

@@ -1,0 +1,2 @@
+{Norse/Norse Male Names},
+{Norse/Norse Female Names}

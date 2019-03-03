@@ -1,0 +1,3 @@
+{Female Prefix}{Female Suffix} daughter of {Female Prefix}{Female Suffix},
+{Female Prefix}{Female Suffix} {Female Prefix}{Female Suffix}dottir,
+{Female Prefix}{Female Suffix} {Nicknames},

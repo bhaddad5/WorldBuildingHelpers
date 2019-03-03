@@ -1,0 +1,3 @@
+{Male Prefix}{Male Suffix} son of {Male Prefix}{Male Suffix},
+{Male Prefix}{Male Suffix} {Male Prefix}{Male Suffix}sson,
+{Male Prefix}{Male Suffix} {Nicknames},
