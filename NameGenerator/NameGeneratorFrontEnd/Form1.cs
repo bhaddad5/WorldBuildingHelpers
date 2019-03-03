@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -15,6 +16,8 @@ namespace NameGeneratorFrontEnd
 		public NameGen()
 		{
 			InitializeComponent();
+
+			this.fileTreeView.TreeViewNodeSorter = new NodeSorter();
 
 			this.fileTreeView.BeforeSelect += FileTreeViewAboutToMakeNewSelection;
 			this.fileTreeView.AfterSelect += FileSelected;
@@ -338,4 +341,19 @@ public class ShittyMoveWatcher
 {
 	public event Action<string, string> FileMoved;
 	public void InvokeFileMove(string newPath, string oldPath) => FileMoved?.Invoke(newPath, oldPath);
+}
+
+public class NodeSorter : IComparer
+{
+	public int Compare(object x, object y)
+	{
+		var xVal = (x as TreeNode)?.Tag as string;
+		var yVal = (y as TreeNode)?.Tag as string;
+
+		if (Directory.Exists(xVal) && !Directory.Exists(yVal))
+			return -1;
+		if (Directory.Exists(yVal) && !Directory.Exists(xVal))
+			return 1;
+		return String.Compare(Path.GetFileNameWithoutExtension(xVal), Path.GetFileNameWithoutExtension(yVal));
+	}
 }

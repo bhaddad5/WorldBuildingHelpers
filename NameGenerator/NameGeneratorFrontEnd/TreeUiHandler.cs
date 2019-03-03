@@ -25,6 +25,7 @@ namespace NameGeneratorFrontEnd
 
 			fileSystem = new FileSystemWatcher(path);
 			fileSystem.EnableRaisingEvents = true;
+			fileSystem.IncludeSubdirectories = true;
 			fileSystem.Created += FileSystemOnCreated;
 			fileSystem.Renamed += FileSystemOnRenamed;
 			fileSystem.Deleted += FileSystemOnDeleted;
@@ -70,13 +71,13 @@ namespace NameGeneratorFrontEnd
 			{
 				if (GetByTag(e.FullPath) != null)
 					return;
-				if (Directory.Exists(e.FullPath) || (File.Exists(e.FullPath) && e.FullPath.EndsWith(".txt")))
-				{
-					var parNode = GetByTag(Path.GetDirectoryName(e.FullPath));
-					var newNode = new TreeNode(Path.GetFileNameWithoutExtension(e.FullPath));
-					newNode.Tag = e.FullPath;
-					parNode.Nodes.Add(newNode);
-				}
+				var parNode = GetByTag(Path.GetDirectoryName(e.FullPath));
+				if (Directory.Exists(e.FullPath))
+					DisplayDirectory(e.FullPath, parNode);
+				if(File.Exists(e.FullPath) && e.FullPath.EndsWith(".txt"))
+					DisplayFileNode(e.FullPath, parNode);
+
+				treeView.Sort();
 			}));
 		}
 
@@ -97,6 +98,8 @@ namespace NameGeneratorFrontEnd
 				DisplayDirectory(newPath, parentNode);
 
 			TableManagementHelpers.UpdateNameAcrossAllFiles(treeView.TopNode.Tag as string, oldPath, newPath);
+
+			treeView.Sort();
 		}
 
 		private void FileSystemOnDeleted(object sender, FileSystemEventArgs e)
