@@ -31,7 +31,7 @@
 			this.button1 = new System.Windows.Forms.Button();
 			this.selectedFileContents = new System.Windows.Forms.RichTextBox();
 			this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-			this.treeView1 = new System.Windows.Forms.TreeView();
+			this.fileTreeView = new System.Windows.Forms.TreeView();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -87,22 +87,22 @@
 			this.richTextBox2.TabIndex = 4;
 			this.richTextBox2.Text = "";
 			// 
-			// treeView1
+			// fileTreeView
 			// 
-			this.treeView1.AllowDrop = true;
-			this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.fileTreeView.AllowDrop = true;
+			this.fileTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.treeView1.BackColor = System.Drawing.SystemColors.MenuText;
-			this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-			this.treeView1.ForeColor = System.Drawing.SystemColors.Menu;
-			this.treeView1.HideSelection = false;
-			this.treeView1.ItemHeight = 20;
-			this.treeView1.Location = new System.Drawing.Point(4, 5);
-			this.treeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size(386, 662);
-			this.treeView1.TabIndex = 5;
+			this.fileTreeView.BackColor = System.Drawing.SystemColors.MenuText;
+			this.fileTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+			this.fileTreeView.ForeColor = System.Drawing.SystemColors.Menu;
+			this.fileTreeView.HideSelection = false;
+			this.fileTreeView.ItemHeight = 20;
+			this.fileTreeView.Location = new System.Drawing.Point(4, 5);
+			this.fileTreeView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.fileTreeView.Name = "fileTreeView";
+			this.fileTreeView.Size = new System.Drawing.Size(386, 662);
+			this.fileTreeView.TabIndex = 5;
 			// 
 			// button2
 			// 
@@ -130,7 +130,7 @@
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-			this.tableLayoutPanel1.Controls.Add(this.treeView1, 0, 0);
+			this.tableLayoutPanel1.Controls.Add(this.fileTreeView, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.selectedFileContents, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.richTextBox2, 2, 0);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -212,7 +212,7 @@
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.RichTextBox selectedFileContents;
 		private System.Windows.Forms.RichTextBox richTextBox2;
-		private System.Windows.Forms.TreeView treeView1;
+		private System.Windows.Forms.TreeView fileTreeView;
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

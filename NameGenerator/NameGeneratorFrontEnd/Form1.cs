@@ -9,21 +9,23 @@ namespace NameGeneratorFrontEnd
 {
 	public partial class NameGen : Form
 	{
+		private TreeUiHandler treeHandler = null;
+		private ShittyMoveWatcher moveWatcher = new ShittyMoveWatcher();
+
 		public NameGen()
 		{
 			InitializeComponent();
 
-			this.treeView1.BeforeSelect += TreeViewAboutToMakeNewSelection;
-			this.treeView1.AfterSelect += FileSelected;
+			this.fileTreeView.BeforeSelect += FileTreeViewAboutToMakeNewSelection;
+			this.fileTreeView.AfterSelect += FileSelected;
 
-			this.treeView1.ItemDrag += ItemDragged;
-			this.treeView1.DragEnter += ItemDragEnter;
-			this.treeView1.DragDrop += MoveFile;
+			this.fileTreeView.ItemDrag += ItemDragged;
+			this.fileTreeView.DragEnter += ItemDragEnter;
+			this.fileTreeView.DragDrop += MoveFile;
 
 			this.button3.Click += SaveOpenFile;
 			this.KeyDown += CheckSave;
 			this.KeyPreview = true;
-			this.textBox1.TextChanged += TypedInFile;
 			this.button4.Click += ValidateCurrentDirectory;
 		}
 
@@ -44,9 +46,16 @@ namespace NameGeneratorFrontEnd
 					string chosenFolder = Path.GetDirectoryName(openFolderDialog.FileName);
 
 					if (!Directory.Exists(chosenFolder))
+					{
 						MessageBox.Show("No Folder Selected", "Please select a folder.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 					else
-						SelectRootFolder(chosenFolder);
+					{
+						treeHandler?.Shutdown();
+						treeHandler = new TreeUiHandler();
+						treeHandler.Setup(chosenFolder, fileTreeView, moveWatcher, DirectoryContextMenu, FileContextMenu);
+						fileTreeView.TopNode.Expand();
+					}
 				}
 			}
 		}
@@ -54,8 +63,7 @@ namespace NameGeneratorFrontEnd
 		private void GenerateNamesList_Click(object sender, EventArgs e)
 		{
 			richTextBox2.Text = "";
-			var currentSelectedFile = treeView1.SelectedNode?.Tag;
-			if (currentSelectedFile == null || !(currentSelectedFile is FileInfo))
+			if (currentSelectedNode == null)
 			{
 				MessageBox.Show("No Table Selected", "Please select a name table to generate from.", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
@@ -75,7 +83,7 @@ namespace NameGeneratorFrontEnd
 			}
 
 			NameRequestHandler ReqHandler = new NameRequestHandler();
-			List<string> vals = ReqHandler.HandleNameRequest((currentSelectedFile as FileInfo).FullName, num);
+			List<string> vals = ReqHandler.HandleNameRequest(currentSelectedFile.FullName, num);
 			for (int i = 0; i < vals.Count; i++)
 			{
 				richTextBox2.Text += vals[i];
@@ -84,35 +92,12 @@ namespace NameGeneratorFrontEnd
 			}
 		}
 
-		private void SelectRootFolder(string path)
+		private ContextMenu DirectoryContextMenu(string dir)
 		{
-			treeView1.Nodes.Clear();
-			var rootDir = DisplayDirectory(new DirectoryInfo(path), null);
-			rootDir.Expand();
-		}
-
-		private TreeNode DisplayDirectory(DirectoryInfo dir, TreeNode parent)
-		{
-			TreeNode node = new TreeNode(dir.Name);
-			node.Tag = dir;
-			if (parent != null)
-				parent.Nodes.Add(node);
-			else
-				treeView1.Nodes.Add(node);
-			node.ContextMenu = DirectoryContextMenu(dir, node);
-			foreach (DirectoryInfo childDirectory in dir.GetDirectories())
-				DisplayDirectory(childDirectory, node);
-			foreach (FileInfo file in dir.GetFiles("*.txt"))
-				DisplayFileNode(file, node);
-			return node;
-		}
-
-		private ContextMenu DirectoryContextMenu(DirectoryInfo dir, TreeNode dirNode)
-		{
-			MenuItem newFolderButton = new MenuItem("Create New Folder", (sender, args) => HandleMakeNewFolder(dir, dirNode));
-			MenuItem newFileButton = new MenuItem("Create New Table", (sender, args) => HandleMakeNewTable(dir, dirNode));
-			MenuItem renameFolderButton = new MenuItem("Rename Folder", (sender, args) => HandleRenameTableOrDirectory(dirNode));
-			MenuItem deleteFolderButton = new MenuItem("Delete Folder", (sender, args) => HandleDeleteTableOrDirectory(dirNode));
+			MenuItem newFolderButton = new MenuItem("Create New Folder", (sender, args) => HandleMakeNewFolder(dir));
+			MenuItem newFileButton = new MenuItem("Create New Table", (sender, args) => HandleMakeNewTable(dir));
+			MenuItem renameFolderButton = new MenuItem("Rename Folder", (sender, args) => HandleRenameTableOrDirectory(dir));
+			MenuItem deleteFolderButton = new MenuItem("Delete Folder", (sender, args) => HandleDeleteTableOrDirectory(dir));
 			var cm = new ContextMenu();
 			cm.MenuItems.Add(newFolderButton);
 			cm.MenuItems.Add(newFileButton);
@@ -123,10 +108,10 @@ namespace NameGeneratorFrontEnd
 			return cm;
 		}
 
-		private ContextMenu FileContextMenu(TreeNode fileNode)
+		private ContextMenu FileContextMenu(string file)
 		{
-			MenuItem deleteFolderButton = new MenuItem("Delete Table", (sender, args) => HandleDeleteTableOrDirectory(fileNode));
-			MenuItem renameFileButton = new MenuItem("Rename File", (sender, args) => HandleRenameTableOrDirectory(fileNode));
+			MenuItem deleteFolderButton = new MenuItem("Delete Table", (sender, args) => HandleDeleteTableOrDirectory(file));
+			MenuItem renameFileButton = new MenuItem("Rename File", (sender, args) => HandleRenameTableOrDirectory(file));
 			var cm = new ContextMenu();
 			cm.MenuItems.Add(renameFileButton);
 			cm.MenuItems.Add("-");
@@ -134,76 +119,47 @@ namespace NameGeneratorFrontEnd
 			return cm;
 		}
 
-		private void HandleRenameTableOrDirectory(TreeNode node)
+		private void HandleRenameTableOrDirectory(string path)
 		{
-			string newName = FileDialog("Rename", "Enter new name:", node.Text);
+			string newName = FileDialog("Rename", "Enter new name:", Path.GetFileNameWithoutExtension(path));
 			if (String.IsNullOrEmpty(newName))
 				return;
 
-			string startingPath = null;
-			string newPath = null;
-			if (node.Tag is FileInfo)
-			{
-				startingPath = Path.Combine((node.Tag as FileInfo).DirectoryName, (node.Tag as FileInfo).Name);
-				newPath = Path.Combine((node.Tag as FileInfo).DirectoryName, newName);
-				if (!newPath.EndsWith(".txt"))
-					newPath += ".txt";
-			}
-			if (node.Tag is DirectoryInfo)
-			{
-				startingPath = (node.Tag as DirectoryInfo).FullName;
-				newPath = Path.Combine((node.Tag as DirectoryInfo).Parent.FullName, newName);
-			}
-			
-			var invalidChar = newName.IndexOfAny(Path.GetInvalidFileNameChars());
+			string newPath = Path.Combine(Path.GetDirectoryName(path), newName);
+			if (File.Exists(path) && !newPath.EndsWith(".txt"))
+				newPath += ".txt";
+
+			if (!CheckValidNewPath(newPath))
+				return;
+
+			if (File.Exists(path))
+				File.Move(path, newPath);
+			if (Directory.Exists(path))
+				Directory.Move(path, newPath);
+		}
+
+		private bool CheckValidNewPath(string newPath)
+		{
+			var invalidChar = Path.GetFileNameWithoutExtension(newPath).IndexOfAny(Path.GetInvalidFileNameChars());
 			if (invalidChar >= 0 || File.Exists(newPath))
 			{
 				MessageBox.Show("Please enter a valid new file name.", "Invalid new file name.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
+				return false;
 			}
-
-			if (node.Tag is FileInfo)
-			{
-				File.Move(startingPath, newPath);
-				
-				var newFileInfo = new FileInfo(newPath);
-				if (currentSelectedFile == node.Tag)
-					currentSelectedNode.Tag = newFileInfo;
-				node.Tag = newFileInfo;
-			}
-
-			if (node.Tag is DirectoryInfo)
-			{
-				Directory.Move(startingPath, newPath);
-				node.Tag = new DirectoryInfo(newPath);
-				RecursivePathUpdate(node, startingPath, newPath);
-			}
-			if (treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
-				TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, startingPath, newPath);
-			node.Text = newName;
+			return true;
 		}
 
-		private void HandleDeleteTableOrDirectory(TreeNode node)
+		private void HandleDeleteTableOrDirectory(string path)
 		{
-			string name = "";
-			if (node.Tag is FileInfo)
-				name = (node.Tag as FileInfo).Name;
-			if (node.Tag is DirectoryInfo)
-				name = (node.Tag as DirectoryInfo).Name;
-
-			DialogResult dialogResult = MessageBox.Show("Are you sure?", $"Are you sure you want to delete {name}?" + node.Tag, MessageBoxButtons.YesNo);
+			DialogResult dialogResult = MessageBox.Show("Are you sure?", $"Are you sure you want to delete:\n\n{path}?", MessageBoxButtons.YesNo);
+			if ((currentSelectedNode?.Tag as string) == path)
+				currentSelectedNode = null;
 			if (dialogResult == DialogResult.Yes)
 			{
-				if (node.Tag is FileInfo)
-				{
-					if (currentSelectedFile == (node.Tag as FileInfo))
-						currentSelectedNode = null;
-					(node.Tag as FileInfo).Delete();
-				}
-				if (node.Tag is DirectoryInfo)
-					DeleteDirectory((node.Tag as DirectoryInfo).FullName);
-				
-				node.Remove();
+				if (File.Exists(path))
+					new FileInfo(path).Delete();
+				if (Directory.Exists(path))
+					DeleteDirectory(path);
 			}
 		}
 
@@ -227,26 +183,21 @@ namespace NameGeneratorFrontEnd
 			Directory.Delete(target_dir, false);
 		}
 
-		private void HandleMakeNewFolder(DirectoryInfo dir, TreeNode dirNode)
+		private void HandleMakeNewFolder(string dir)
 		{
 			string newFolderName = FileDialog("Make a new Folder", "New Folder Name:", "");
 			if (String.IsNullOrEmpty(newFolderName))
 				return;
 
-			string path = Path.Combine(dir.FullName, newFolderName);
+			string path = Path.Combine(dir, newFolderName);
 
-			var invalidChar = newFolderName.IndexOfAny(Path.GetInvalidFileNameChars());
-			if (invalidChar >= 0 || File.Exists(path))
-			{
-				MessageBox.Show("Please enter a valid new file name.", "Invalid new file name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if (!CheckValidNewPath(path))
 				return;
-			}
 
-			var newDir = Directory.CreateDirectory(path);
-			DisplayDirectory(newDir, dirNode);
+			Directory.CreateDirectory(path);
 		}
 
-		private void HandleMakeNewTable(DirectoryInfo dir, TreeNode dirNode)
+		private void HandleMakeNewTable(string dir)
 		{
 			string newTableName = FileDialog("Make a new Table", "New Table Name:", "");
 
@@ -255,19 +206,13 @@ namespace NameGeneratorFrontEnd
 
 			if (!newTableName.EndsWith(".txt"))
 				newTableName += ".txt";
-			string path = Path.Combine(dir.FullName, newTableName);
+			string path = Path.Combine(dir, newTableName);
 
-			var invalidChar = newTableName.IndexOfAny(Path.GetInvalidFileNameChars());
-			if (invalidChar >= 0 || File.Exists(path))
-			{
-				MessageBox.Show("Please enter a valid new file name.", "Invalid new file name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if (!CheckValidNewPath(path))
 				return;
-			}
 
 			var stream = File.Create(path);
 			stream.Close();
-			var node = DisplayFileNode(new FileInfo(path), dirNode);
-			treeView1.SelectedNode = node;
 		}
 
 		private string FileDialog(string text, string caption, string startingStr)
@@ -292,38 +237,24 @@ namespace NameGeneratorFrontEnd
 			return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
 		}
 
-		private TreeNode DisplayFileNode(FileInfo file, TreeNode parent)
-		{
-			TreeNode node = new TreeNode(file.Name);
-			node.Tag = file;
-			if (parent != null)
-				parent.Nodes.Add(node);
-			else
-				treeView1.Nodes.Add(node);
-			node.ContextMenu = FileContextMenu(node);
-			return node;
-		}
-
 		private void SaveOpenFile(object sender, EventArgs e)
 		{
-			var currentSelectedFile = treeView1.SelectedNode?.Tag;
-			if (currentSelectedFile == null || !(currentSelectedFile is FileInfo))
+			if (currentSelectedNode == null)
 			{
 				MessageBox.Show("No Table Selected", "Not currently editing any name table.", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
-
-			File.WriteAllText((currentSelectedFile as FileInfo).FullName, selectedFileContents.Text);
+			File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
 		}
 
 		private TreeNode currentSelectedNode = null;
-		private FileInfo currentSelectedFile => currentSelectedNode?.Tag as FileInfo;
+		private FileInfo currentSelectedFile => new FileInfo(currentSelectedNode?.Tag as string);
 		private void FileSelected(object sender, TreeViewEventArgs e)
 		{
 			currentSelectedNode = null;
 			selectedFileContents.Text = "";
 			selectedFileContents.ReadOnly = true;
-			if (!(e.Node.Tag is FileInfo))
+			if (!File.Exists(e.Node.Tag as string))
 				return;
 			currentSelectedNode = e.Node;
 			var stream = currentSelectedFile.OpenText();
@@ -332,7 +263,7 @@ namespace NameGeneratorFrontEnd
 			stream.Close();
 		}
 
-		private void TreeViewAboutToMakeNewSelection(object sender, TreeViewCancelEventArgs e)
+		private void FileTreeViewAboutToMakeNewSelection(object sender, TreeViewCancelEventArgs e)
 		{
 			if (currentSelectedNode == null || !currentSelectedFile.Exists || currentSelectedNode == e.Node)
 				return;
@@ -343,117 +274,68 @@ namespace NameGeneratorFrontEnd
 			currFileText = currFileText.Replace("\r", "");
 			stream.Close();
 			if (currFileText.Equals(selectedFileContents.Text))
-			{
 				return;
-			}
 			currentSelectedNode = null;
 
 			DialogResult dialogResult = MessageBox.Show($"Save {currSelectedNodeName}?", "Save Changes?", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
-			{
 				File.WriteAllText(currentSelectedFile.FullName, selectedFileContents.Text);
-			}
 			else
-			{
 				selectedFileContents.Text = "";
-			}
 		}
 
 		private void CheckSave(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.S && e.Modifiers == Keys.Control)
-			{
 				SaveOpenFile(null, null);
-			}
 		}
 
 		private void ValidateCurrentDirectory(object sender, EventArgs e)
 		{
 			NameTablesDirectoryValidator validator = new NameTablesDirectoryValidator();
-			if (treeView1.Nodes.Count == 0)
+			if (fileTreeView.Nodes.Count == 0)
 				return;
 			if(currentSelectedNode != null)
 				SaveOpenFile(null, null);
-			if (!validator.ValidateDirectory((treeView1.Nodes[0].Tag as DirectoryInfo).FullName))
-			{
+			if (!validator.ValidateDirectory(fileTreeView.TopNode.Tag as string))
 				MessageBox.Show(validator.errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
 			else
-			{
 				MessageBox.Show( "No problems detected with current tables :)", "All good!", MessageBoxButtons.OK, MessageBoxIcon.None);
-			}
 		}
 
 		private void ItemDragged(object sender, ItemDragEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left)
-			{
 				DoDragDrop(e.Item, DragDropEffects.Move);
-			}
 		}
 
 		private void ItemDragEnter(object sender, DragEventArgs e)
 		{
-			Point targetPoint = treeView1.PointToClient(new Point(e.X, e.Y));
-			TreeNode targetNode = treeView1.GetNodeAt(targetPoint);
-			//if (targetNode?.Tag is DirectoryInfo)
-				e.Effect = DragDropEffects.Move;
+			e.Effect = DragDropEffects.Move;
 		}
 
 		private void MoveFile(object sender, DragEventArgs e)
 		{
-			Point targetPoint = treeView1.PointToClient(new Point(e.X, e.Y));
-			TreeNode targetNode = treeView1.GetNodeAt(targetPoint);
+			Point targetPoint = fileTreeView.PointToClient(new Point(e.X, e.Y));
+			TreeNode targetNode = fileTreeView.GetNodeAt(targetPoint);
+			if (targetNode == null || !Directory.Exists(targetNode.Tag as string))
+				return;
 
 			// Retrieve the node that was dragged.
 			TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
-
-			if (targetNode != null && targetNode.Tag is DirectoryInfo)
-			{
-				if (draggedNode.Tag is FileInfo)
-				{
-					string oldPath = (draggedNode.Tag as FileInfo).FullName;
-					string newPath = Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as FileInfo).Name);
-					(draggedNode.Tag as FileInfo).MoveTo(newPath);
-					if(treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
-						TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, oldPath, newPath);
-				}
-				if (draggedNode.Tag is DirectoryInfo)
-				{
-					string oldPath = (draggedNode.Tag as DirectoryInfo).FullName;
-					string newPath = Path.Combine((targetNode.Tag as DirectoryInfo).FullName, (draggedNode.Tag as DirectoryInfo).Name);
-					(draggedNode.Tag as DirectoryInfo).MoveTo(newPath);
-					if (treeView1.Nodes.Count > 0 && (treeView1.Nodes[0].Tag is DirectoryInfo))
-						TableManagementHelpers.UpdateNameAcrossAllFiles((treeView1.Nodes[0].Tag as DirectoryInfo).FullName, oldPath, newPath);
-					RecursivePathUpdate(draggedNode, oldPath, newPath);
-
-				}
-				draggedNode.Remove();
-				targetNode.Nodes.Add(draggedNode);
-				targetNode.Expand();
-			}
-		}
-
-		private void RecursivePathUpdate(TreeNode node, string oldPath, string newPath)
-		{
-			if (oldPath.EndsWith("//"))
-				oldPath = oldPath.Substring(0, oldPath.Length - 2);
-			if (newPath.EndsWith("//"))
-				newPath = newPath.Substring(0, newPath.Length - 2);
-			if (node.Tag is FileInfo && (node.Tag as FileInfo).FullName.Contains(oldPath))
-				node.Tag = new FileInfo((node.Tag as FileInfo).FullName.Replace(oldPath, newPath));
-			if (node.Tag is DirectoryInfo && (node.Tag as DirectoryInfo).FullName.Contains(oldPath))
-				node.Tag = new DirectoryInfo((node.Tag as DirectoryInfo).FullName.Replace(oldPath, newPath));
-
-			foreach (object n in node.Nodes)
-			{
-				RecursivePathUpdate(n as TreeNode, oldPath, newPath);
-			}
-		}
-
-		private void TypedInFile(object sender, EventArgs e)
-		{
-
+			string oldPath = draggedNode.Tag as string;
+			string newPath = Path.Combine(targetNode.Tag as string, Path.GetFileName(oldPath));
+			if (File.Exists(oldPath))
+				new FileInfo(oldPath).MoveTo(newPath);
+			if (Directory.Exists(draggedNode.Tag as string))
+				new DirectoryInfo(oldPath).MoveTo(newPath);
+			moveWatcher.InvokeFileMove(newPath, oldPath);
 		}
 	}
+}
+
+public class ShittyMoveWatcher
+{
+	public event Action<string, string> FileMoved;
+	public void InvokeFileMove(string newPath, string oldPath) => FileMoved?.Invoke(newPath, oldPath);
 }
