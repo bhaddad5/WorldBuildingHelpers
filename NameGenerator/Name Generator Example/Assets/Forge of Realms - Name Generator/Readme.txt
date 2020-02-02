@@ -63,7 +63,7 @@ OK, pheawph, you're good.
 
 	Since Name Tables are simply .txt files, you can edit and manage them through a simple text editor like Notepad.
 
-	However, the project does come with a much more ueful/convenient solution for data management.  A shortcut to the Name Table Editor sits in StreamingAssets/Name Generator.
+	However, the project does come with a much more ueful/convenient solution for data management.  The Name Table Editor sits in StreamingAssets/Name Generator/Name Table Editor/NameGeneratorFrontEnd.exe.
 
 	Once you start the program, click "Select Folder" and pick the root folder of your Name Table Files (Probably: "StreamingAssets/Name Generator/Name Tables/").
 

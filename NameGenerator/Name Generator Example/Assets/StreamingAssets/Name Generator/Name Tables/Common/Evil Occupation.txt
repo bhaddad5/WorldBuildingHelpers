@@ -1,0 +1,6 @@
+Conqueror,
+Killer,
+Slaughterer,
+Devouer,
+Torturer,
+Raider,

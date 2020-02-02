@@ -19,7 +19,6 @@ namespace NameGeneratorFrontEnd
 
 			this.fileTreeView.TreeViewNodeSorter = new NodeSorter();
 
-			this.fileTreeView.BeforeSelect += FileTreeViewAboutToMakeNewSelection;
 			this.fileTreeView.AfterSelect += FileSelected;
 
 			this.fileTreeView.ItemDrag += ItemDragged;
@@ -264,6 +263,8 @@ namespace NameGeneratorFrontEnd
 
 		private void FileSelected(object sender, TreeViewEventArgs e)
 		{
+			CheckSaveOldFile();
+
 			currentSelectedNode = null;
 			selectedFileContents.Text = "";
 			selectedFileContents.ReadOnly = true;
@@ -276,25 +277,20 @@ namespace NameGeneratorFrontEnd
 			stream.Close();
 		}
 
-		private void FileTreeViewAboutToMakeNewSelection(object sender, TreeViewCancelEventArgs e)
+		private void CheckSaveOldFile()
 		{
-			if (currentSelectedNode == null || !GetCurrSelectedFile().Exists || currentSelectedNode == e.Node)
+			if (currentSelectedNode == null || !GetCurrSelectedFile().Exists)
 				return;
 			string currSelectedNodeName = currentSelectedNode.Text;
 			
-			var stream = GetCurrSelectedFile().OpenText();
-			string currFileText = stream.ReadToEnd();
+			string currFileText = File.ReadAllText(currentSelectedNode.Tag as string);
 			currFileText = currFileText.Replace("\r", "");
-			stream.Close();
 			if (currFileText.Equals(selectedFileContents.Text))
 				return;
+
 			DialogResult dialogResult = MessageBox.Show($"Save {currSelectedNodeName}?", "Save Changes?", MessageBoxButtons.YesNo);
 			if (dialogResult == DialogResult.Yes)
-				File.WriteAllText(GetCurrSelectedFile().FullName, selectedFileContents.Text);
-			else
-				selectedFileContents.Text = "";
-
-			currentSelectedNode = null;
+				SaveOpenFile(null, null);
 		}
 
 		private void CheckSave(object sender, KeyEventArgs e)
