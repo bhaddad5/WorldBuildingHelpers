@@ -1,40 +1,39 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 using NameGenerator;
-using UnityEngine.Windows;
 
 public class NameTableEditor : EditorWindow
 {
-	[MenuItem("Forge of Realms/Name Table Editor")]
-	static void OpenNameTableEditor()
+	private static string currFile;
+
+	public static void OpenNameTableEditor(string file)
 	{
+		currFile = file;
 		GetFileContents();
 
-
-		NameTableEditor window = ScriptableObject.CreateInstance<NameTableEditor>();
-		window.position = new Rect(Screen.width / 2f, Screen.height / 2f, 400, 600);
-		window.ShowPopup();
+		var window = GetWindow<NameTableEditor>("Edit: " + Path.GetFileNameWithoutExtension(file));
+		window.position = new Rect(Screen.width / 2f, Screen.height / 2f, 500, 600);
+		window.Show();
 	}
 
 	private static string currentFileContents = "";
-	private static string currFile = "Old Ones/Lovecraft Name Prefixes";
-
+	private static Vector2 scroll;
 	void OnGUI()
 	{
-		EditorGUILayout.TextArea(currentFileContents, GUILayout.Height(390), GUILayout.Width(200));
+		scroll = EditorGUILayout.BeginScrollView(scroll);
+		currentFileContents = EditorGUILayout.TextArea(currentFileContents, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
+		EditorGUILayout.EndScrollView();
 
-		if (GUILayout.Button("Save"))
+		if (GUILayout.Button("Save", GUILayout.Width(50)))
 		{
 			Debug.Log("save");
 			this.Close();
 			System.IO.File.WriteAllText(MyFile(), currentFileContents);
 		}
 
-		if (GUILayout.Button("Cancel"))
+		if (GUILayout.Button("Done", GUILayout.Width(50)))
 		{
 			this.Close();
 		}
@@ -59,6 +58,6 @@ public class NameTableEditor : EditorWindow
 			return "";
 
 		var myDir = Path.Combine(Application.streamingAssetsPath, "Name Generator/Name Tables");
-		return Path.Combine(myDir, currFile + ".txt");
+		return Path.Combine(myDir, currFile);
 	}
 }
