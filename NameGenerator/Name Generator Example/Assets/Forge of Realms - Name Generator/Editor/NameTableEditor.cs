@@ -13,6 +13,8 @@ public class NameTableEditor : EditorWindow
 		currFile = file;
 		GetFileContents();
 
+		latestTestResults = "";
+
 		var window = GetWindow<NameTableEditor>("Edit: " + Path.GetFileNameWithoutExtension(file));
 		window.position = new Rect(Screen.width / 2f, Screen.height / 2f, 500, 600);
 		window.Show();
@@ -20,8 +22,14 @@ public class NameTableEditor : EditorWindow
 
 	private static string currentFileContents = "";
 	private static Vector2 scroll;
+	private static string latestTestResults = "";
 	void OnGUI()
 	{
+		if (GUILayout.Button("Done", GUILayout.Width(50)))
+		{
+			this.Close();
+		}
+
 		scroll = EditorGUILayout.BeginScrollView(scroll);
 		currentFileContents = EditorGUILayout.TextArea(currentFileContents, GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
 		EditorGUILayout.EndScrollView();
@@ -30,34 +38,33 @@ public class NameTableEditor : EditorWindow
 		{
 			Debug.Log("save");
 			this.Close();
-			System.IO.File.WriteAllText(MyFile(), currentFileContents);
+			System.IO.File.WriteAllText(currFile, currentFileContents);
 		}
 
-		if (GUILayout.Button("Done", GUILayout.Width(50)))
+		GUILayout.Space(10);
+
+		if (GUILayout.Button("Test", GUILayout.Width(50)))
 		{
-			this.Close();
+			var generatedNames = new NameRequestHandler().HandleNameRequest(currFile, 5);
+			latestTestResults = "";
+			foreach (string name in generatedNames)
+				latestTestResults += name + ",\n";
+		}
+
+		if (latestTestResults != "")
+		{
+			GUILayout.Label("Example Results:");
+			GUILayout.Label(latestTestResults);
 		}
 	}
 
 	private static void GetFileContents()
 	{
-		if (MyFile() == null)
-			currentFileContents = "";
-
-		var contents = System.IO.File.ReadAllText(MyFile());
+		var contents = System.IO.File.ReadAllText(currFile);
 		contents = contents.Replace('\n', '\0');
 		contents = contents.Replace('\r', '\0');
 		contents = contents.Replace(",", ",\n");
 
 		currentFileContents = contents;
-	}
-
-	private static string MyFile()
-	{
-		if (String.IsNullOrEmpty(currFile))
-			return "";
-
-		var myDir = Path.Combine(Application.streamingAssetsPath, "Name Generator/Name Tables");
-		return Path.Combine(myDir, currFile);
 	}
 }
