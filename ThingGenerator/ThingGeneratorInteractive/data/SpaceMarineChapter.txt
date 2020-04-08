@@ -1,0 +1,60 @@
+{SpaceMarineChapter-"Space Marine Chapter"}:
+ChapterName
+ChapterFriends
+ChapterEnemies
+
+(ChapterName-"Chapter Name"):
+1 - "{SpaceMarineChapterName}"
+
+(ChapterFriends-"Chapter's Allies"):
+6 - "Administratum"
+10 - "Adeptus Arbites"
+5 - "Another Space Marine Chapter (choose one)"
+5 - "Adeptus Astra Telepathica"
+10 - "Adeptus Mechanicus"
+5 - "Adepta Sororitas"
+4 - "Adeptus Titanicus"
+5 - "An Imperial Knight House"
+3 - "Astropaths"
+2 - "Chartist Captains"
+5 - "Ecclesiarchy"
+10 - "Imperial Guard from a specific world"
+4 - "Imperial Navy"
+6 - "Inquisition"
+3 - "Navigators"
+3 - "Officio Assassinorum"
+3 - "Planetary Defence Force of a specific world"
+5 - "A Rogue Trader dynasty"
+1 - "Schola Progenium"
+1 - "Scholastica Psykana"
+
+(ChapterEnemies-"Chapter's Enemies"):
+2 - "(ChapterFriends)"
+19 - "The Orks (alternatively, you may select a particular Waaagh! or Warboss)"
+9 - "The Tau Empire (alternatively, you may select a particular Sept, Commander, or Ethereal)"
+1 - "The Farsight Enclaves (alternatively, you may select Farsight himself or a subcommander)"
+10 - "The Eldar (alternatively, you may select a particular Craftworld or leader)"
+9 - "The Tyranids (alternatively, you may select a particular Hive Fleet)"
+9 - "The Genestealer Cults (alternatively, you may select a particular Cult)"
+10 - "Chaos Space Marines (you should choose a particular warband, Chapter, or Traitor Legion)"
+9 - "A particular Daemon, Daemon Prince or Disciple of Chaos"
+8 - "A particular Chaos-aligned group (i.e., Traitor Titan Legion, Chaos pirates, renegade Imperial Guard, etc.)"
+9 - "The Dark Eldar (alternatively, you may select a particular Kabal or leader)."
+4 - "(MinorXenos)"
+
+(MinorXenos-"Minor Xenos Empire"):
+15  -  "Kroot, Vespid, or another T'au client race"
+10  -  "Hrud"
+10  -  "Fra'al"
+10  -  "Uluméathic League"
+10  -  "Yu'Vath/Legacy of the Yu'vath/Rak'gol"
+10  -  "Enslavers"
+5  -  "Barghesi"
+5  -  "Thyrrus"
+5  -  "Hellgrammite"
+5  -  "Loxatl"
+5  -  "Saharduin"
+3  -  "Xenarch"
+3  -  "Cythor Fiends"
+2  -  "Nightmare-Engines of the Pale Wasting"
+2  -  "Other Xenos Species (pick one or roll/write one up)"
