@@ -51,7 +51,7 @@ namespace NameTableInteractive
 				}
 			}
 
-			Generator.AvailableNameTables = names;
+			NameGenerator.AvailableNameTables = names;
 
 			Console.WriteLine(names[0].ResolveNameTableToString());
 		}

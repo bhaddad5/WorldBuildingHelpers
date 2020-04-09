@@ -15,7 +15,7 @@ public class ThingData
 		string res = $"{ThingName}:";
 		foreach (string attributeId in AttributesIds)
 		{
-			AttributeData attribute = Generator.AvailableAttributes.FirstOrDefault(attr => attr.AttributeId == attributeId);
+			AttributeData attribute = ThingGenerator.AvailableAttributes.FirstOrDefault(attr => attr.AttributeId == attributeId);
 			if (attribute == null)
 				throw new Exception("Failed to find attribute with id: " + attributeId);
 

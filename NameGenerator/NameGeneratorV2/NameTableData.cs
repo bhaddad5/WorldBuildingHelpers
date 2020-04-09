@@ -21,7 +21,7 @@ public class NameTableData
 			}
 			else if (chosenNameOption[i] == '}')
 			{
-				var table = Generator.AvailableNameTables.FirstOrDefault(nt =>
+				var table = NameGenerator.AvailableNameTables.FirstOrDefault(nt =>
 					nt.NameTableId == resolvingTableRefernce);
 				if (table == null)
 					throw new Exception($"Could not find table with id {resolvingTableRefernce}");

@@ -50,6 +50,17 @@ namespace ThingGeneratorInteractive
 					currTable = currThingData;
 					things.Add(currThingData);
 				}
+				else if (s.StartsWith("{") && s.EndsWith("}:"))
+				{
+					s = s.Replace("{", "");
+					s = s.Replace("}", "");
+					s = s.Replace(":", "");
+					s = s.Replace("\"", "");
+					var currThingData = new NameTableData();
+					currThingData.NameTableId = s;
+					currTable = currThingData;
+					names.Add(currThingData);
+				}
 				else if (s.StartsWith("(") && s.EndsWith("):"))
 				{
 					s = s.Replace("(", "");
@@ -89,12 +100,15 @@ namespace ThingGeneratorInteractive
 					{
 						if(currTable is ThingData)
 							(currTable as ThingData).AttributesIds.Add(s);
+						else if(currTable is NameTableData)
+							(currTable as NameTableData).NameOptions.Add(s);
 					}
 				}
 			}
 
-			Generator.AvailableAttributes = attributes;
-			Generator.AvailableThings = things;
+			ThingGenerator.AvailableAttributes = attributes;
+			ThingGenerator.AvailableThings = things;
+			NameGenerator.AvailableNameTables = names;
 
 			Console.WriteLine(things[0].ResolveThingToString());
 		}
