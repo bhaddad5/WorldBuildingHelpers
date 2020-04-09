@@ -1,4 +1,4 @@
-{SpaceMarineChapter-"Space Marine Chapter"}:
+[SpaceMarineChapter-"Space Marine Chapter"]:
 ChapterName
 ChapterFriends
 ChapterEnemies

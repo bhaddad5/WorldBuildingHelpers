@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace ThingGeneratorInteractive
 {
@@ -8,16 +9,22 @@ namespace ThingGeneratorInteractive
 	{
 		static void Main(string[] args)
 		{
-			string[] data = File.ReadAllLines("../../../data/SpaceMarineChapter.txt");
+			List<string> data = new List<string>();
+
+			foreach (string file in Directory.GetFiles("../../../data"))
+			{
+				if (Path.GetExtension(file) == ".txt")
+				{
+					data = data.Concat(File.ReadAllLines(file)).ToList();
+				}
+			}
 
 			List<ThingData> things = new List<ThingData>();
 			List<AttributeData> attributes = new List<AttributeData>();
+			List<NameTableData> names = new List<NameTableData>();
 
 			object currTable = null;
-
-			ThingData currThingData = null;
-			AttributeData currAttributeData = null;
-
+			
 			int lineNum = 0;
 			foreach (string ln in data)
 			{
@@ -28,22 +35,22 @@ namespace ThingGeneratorInteractive
 				if (string.IsNullOrEmpty(s))
 					continue;
 
-				if (s.StartsWith("{"))
+				if (s.StartsWith("[") && s.EndsWith("]:"))
 				{
-					s = s.Replace("{", "");
-					s = s.Replace("}", "");
+					s = s.Replace("[", "");
+					s = s.Replace("]", "");
 					s = s.Replace(":", "");
 					s = s.Replace("\"", "");
 					var idAndName = s.Split("-", 2);
 					if(idAndName.Length != 2)
 						throw new Exception($"Invalid definition on line: {lineNum}");
-					currThingData = new ThingData();
+					var currThingData = new ThingData();
 					currThingData.ThingId = idAndName[0];
 					currThingData.ThingName = idAndName[1];
 					currTable = currThingData;
 					things.Add(currThingData);
 				}
-				else if (s.StartsWith("("))
+				else if (s.StartsWith("(") && s.EndsWith("):"))
 				{
 					s = s.Replace("(", "");
 					s = s.Replace(")", "");
@@ -52,7 +59,7 @@ namespace ThingGeneratorInteractive
 					var idAndName = s.Split("-", 2);
 					if (idAndName.Length != 2)
 						throw new Exception($"Invalid definition on line: {lineNum}");
-					currAttributeData = new AttributeData();
+					var currAttributeData = new AttributeData();
 					currAttributeData.AttributeId = idAndName[0];
 					currAttributeData.AttributeName = idAndName[1];
 					currTable = currAttributeData;
