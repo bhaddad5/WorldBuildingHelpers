@@ -1,10 +1,172 @@
 [SpaceMarineChapter-"Space Marine Chapter"]:
 ChapterName
+FoundingReason
+FoundingDate
+ChapterProg
+GeneSeedPurity
+ChapterDemeanour
+ChapterFlaw
+ChapterLegendFigure
+CapterLegendDeed
+WorldType
+WorldTerrain
+WorldRule
+CombatDoctrine
+CombatTraining
+Beliefs
+Strength
 ChapterFriends
 ChapterEnemies
 
 (ChapterName-"Chapter Name"):
 1 - "{SpaceMarineChapterName}"
+
+(FoundingReason-"Reason for Founding"):
+4 -	"Strategic Prognostication - 'Our tarot cards say there's going to be a threat here, maybe. Found a Chapter!'"
+2 - "Counter - 'There are Orks over here! Found a Chapter!' 'But it'll take 50 ye-' 'Do it!'"
+2 -	"Standing Force - 'This area doesn't have any Marines in it. Found a Chapter!'"
+2 - "Crusade - 'We need people running around and hitting the Imperium's enemies. Found a Chapter!'"
+
+(FoundingDate-"Founding Date"):
+1 - "Unsupported claim of Second Founding status"
+1 - "Late M31; Third Founding"
+7 - "Unknown"
+5 - "32nd Millennium"
+5 - "33rd Millennium"
+5 - "34th Millennium"
+5 - "M35; 13th ('Dark') Founding"
+10 - "M35; 14th-20th Founding"
+10 - "991.M35; 21st ('Cursed') Founding"
+5 - "36th Millennium"
+5 - "37th Millennium"
+5 - "M38; 23rd ('Sentinel') Founding"
+5 - "39th Millennium"
+5 - "40th Millennium"
+5 - "41st Millennium"
+15 - "M42; Ultima Founding"
+
+(ChapterProg-"Chapter Progenitor:"):
+50 - "Ultramarines"
+15 - "Blood Angels"
+10 - "Dark Angels"
+5 - "Traitor Legion or unknown"
+5 - "Imperial Fists"
+5 - "White Scars"
+4 - "Raven Guard"
+4 - "Iron Hands"
+1 - "Space Wolves"
+1 - "Salamanders"
+
+(GeneSeedPurity-"Gene-seed Purity"):
+5 - "Pure - Same as progenitor in terms of purity, and will maintain close links with it"
+2 - "A New Generation - Gene-seed is slightly divergent (usually because of attempts to breed out flaws, real or not), leading to the Chapter being less linked to its progenitor"
+2 - "Altered Stock - Gene-seed is altered and some implants are deficient - roll one Gene-Seed Deficiencies table"
+1 - "Flawed - Chapter's gene-seed is flawed and sets them apart from their progenitor - roll on Chapter Flaws table"
+
+(ChapterDemeanour-"Chapter Demeanour"):
+1 - "Swift As The Wind - Going slowly and thinking things out? *BLAM* No."
+1 - "Cleanse and Purify - Not destroy everything? *BLAM* No."
+1 - "No Mercy, No Respite - Let the enemy go so we can follow them? *BLAM* No."
+1 - "Purity Above All - Mutants? *BLAM* No."
+1 - "Scions of Mars - Flesh is strong? *BLAM* No."
+1 - "See, But Don't Be Seen - Run onto the battlefield in colourful armour screaming like a maniac? *BLAM* No."
+1 - "Suffer Not the Alien to Live - Xenos? *BLAM* No."
+1 - "Suffer Not the Work of Heretics - Heretics? *BLAM* No."
+1 - "Brothers in Battle - Hos before bros? *BLAM* No."
+1 - "Uphold the Honour of the Emperor - Performing unheroic acts? *BLAM* No."
+
+(ChapterFlaw-"Chapter Flaw"):
+2 - "We Stand Alone - The Chapter is either distrusted for some reason, or shuns contact with others."
+2 - "Pride in the Colours - The Chapter hates doing anything that covers their livery, including wearing Deathwatch black."
+2 - "Faith in Suspicion - The Chapter particularly hates a single Imperial institution, and refuses to work with them."
+2 - "Eye to Eye - The Chapter hates any method of warfare other than running up to the enemy and punching them."
+2 - "Chapter Cult - The practices of the Chapter are weird and probably quite unsavory."
+
+(ChapterLegendFigure-"Legendary Figure"):
+20 - "A Battle-Brother seconded from a previous generation Successor or even the First Founding Legion that provided the new Chapter’s gene-seed."
+30 - "Chapter Master"
+10 - "Chief Librarian"
+10 - "Master of Sanctity"
+3 - "Master of the Forge"
+1 - "Master of the Fleet"
+1 - "Chief Apothecary"
+10 - "Company Captain (roll d10 to determine which company)."
+5 - "Squad Sergeant (roll d10 twice to determine company and squad)."
+10 - "Battle-Brother (roll d10 twice to determine company and squad)."
+1 - "A specialist of your choice (Librarian, Chaplain, Techmarine, driver, pilot, etc)."
+
+(CapterLegendDeed-"Deeds of Legendary Figure"):
+17 - "The figure is remembered as the bane of the Orks, to such an extent that his name is known to the vile greenskins even to this day."
+28 - "The individual was a stalwart enemy of the servants of Chaos, and slew a Daemon Prince."
+15 - "The hero led a glorious campaign against a rebel army, defeating the foe and bringing an entire sector back into the light of the Emperor."
+15 - "The figure led an action against an Eldar craftworld, boarding it and inflicting grievous casualties before withdrawing.  He and his Chapter are especially hated by the pernicious Eldar, for whom the event is still fresh and raw."
+10 - "The hero was lost to his Chapter in a warp accident, yet his descendents have cause to believe he lives still and may one day return to them in glory."
+5 - "The hero was the first to face some newly discovered alien race, and ultimately responsible for its total destruction.  Centuries later, only the Chapter remembers the name of the race, so utterly was it and its works cast down."
+7 - "The hero led his Chapter in many glorious campaigns, slaying hundreds of the enemy’s greatest champions."
+
+(WorldType-"Homeworld"):
+30 - "Hive World"
+30 - "Feral World"
+10 - "Medieval World"
+10 - "Civilised World"
+10 - "Uninhabited World"
+10 - "Fleet-based"
+
+(WorldTerrain-"Homeworld Terrain"):
+25 - "Jungle/Forest/Swamp"
+25 - "Desert"
+10 - "Ice (water or otherwise)"
+5 - "Ocean (almost always water)"
+10 - "Wasteland"
+5 - "Urban/Human Ruins/Xeno Ruins"
+5 - "Dead"
+5 - "Airless"
+10 - "Temperate/Garden"
+
+(WorldRule-"Method of rule over Homeworld"):
+1 - "Direct Rule - 'My lord Chapter Master, here are the tax-plans for the North-West district of Boreale City...'"
+3 - "Stewardship - 'Hi, Planetary Governor? It's me, the Chapter Master. Just calling you to remind you that I outrank you, even if I don't do anything.'"
+6 - "Distant rule - 'You see that castle up there? It's inhabited by the mighty sky-warriors of Emp-rar. Sometimes they come and steal our children.'"
+
+(CombatDoctrine-"Combat Doctrine"):
+1 - "Close Combat"
+1 - "Ranged Combat"
+1 - "Armoured Assault"
+1 - "Stealth"
+1 - "Lightning Strike"
+1 - "Drop Pod"
+1 - "Thunderhawk Assault"
+1 - "Siege"
+1 - "Shock and Awe"
+1 - "Terror"
+
+(CombatTraining-"Training"):
+10 - "The Holy Bolter: The chapter undertakes drill with the bolter and meditative prayer daily, and may combine the two."
+10 - "Mental Bulwark: The chapter's hypno-indoctrination is more thorough than most, leading to strong-willed if inflexible astartes."
+10 - "Warrior Angels: Astartes of this chapter are famously skilled with both gun and sword, but sometimes lacking in more abstract skills."
+10 - "Mens et Manus: This chapter believes in building their brother's minds and bodies to peak performance, the better to be ready for anything."
+10 - "Endure Anything: Training in this chapter emphasizes the need for any squad to be ready to endure any trials they find themselves in. They produce tough, durable brothers with diverse specialties."
+10 - "Duty Unto Death: Astartes of this chapter will readily take on missions others see as suicidal, and soldier through any pain they encounter on the way."
+10 - "Shatter the Foe: This chapter considers the best way to combat the enemy to be fast, powerful strikes which demoralize enemies and inspire allies."
+10 - "Scholar-Knights: All astartes of this chapter are expected to be well-read and treat gathering intelligence as a duty of equal importance to direct destruction of the foe."
+10 - "Shepherd-Marshals: The chaplain's arts are spread well beyond the reclusiam in this chapter, and its brothers inspire those they fight alongside with their stirring rhetoric and skill with the blade."
+10 - "All Paths to Victory: This chapter encourages an unusual degree of freedom in its training, with a result of very diverse skillsets and aptitudes among its astartes."
+
+(Beliefs-"Chapter Beliefs"):
+40 - "Revere the Primarch - 'Our Spiritual Liege is better than yours!'"
+25 - "The Emperor Above All - 'Screw your spiritual liege. The big E is where it's at.'"
+10 - "Honour the Ancestors - 'Old members of our Chapter are better than your guys.'"
+5 - "Death Cult - 'SHUT UP YOU GUYS DON'T YOU KNOW WE'RE GOING TO DIE SOME DAY'"
+5 - "Totem Creature - 'You know how we've got a hawk as our Chapter symbol? Yeah, we're going to stick that everywhere.'"
+5 - "Purity of Man - 'Flesh is better than bionics!'"
+5 - "Steel Over Flesh - 'Bionics are better than flesh!'"
+5 - "Esoteric Beliefs - You know our Chapter's beliefs? They're weird."
+
+(Strength-"Current Combat Strength"):
+1 - "Endangered: The Chapter numbers only a handful of Companies or less having suffered devastating losses in combat, accident, or dramatic genetic instability. If recovery is even possible it will take many decades, making every Battle-Brother (and his Progenoids) an invaluable resource."
+3 - "Under Strength: The Chapter is recovering from a defeat or accident that occurred several decades ago, or has recently suffered heavy, but not irrecoverable losses. It is probably at a minimum of half strength, and should return to nominal strength within a decade."
+5 - "Normal: The Chapter can field ten full companies, each with ten squads. In all likelihood most every squad consist of ten brethren and some specialised appointments may be empty, but the Chapter is regarded as fully fit for battle."
+1 - "Over Strength: Some Chapters maintain more than the prescribed ten companies, though it is rare for more than a handful more to be fielded and even then only temporarily. It may be that the Emperor’s Tarot has predicted terrible losses ahead, or that the Chapter simply regards its numbers as optimal and cares little for the dictates of the Codex Astartes."
 
 (ChapterFriends-"Chapter's Allies"):
 6 - "Administratum"

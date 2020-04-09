@@ -2,6 +2,7 @@
 {Animal}s of {AngryNoun}
 {Animal}s of {GoodNoun}
 {Animal} {MarineGroupNounPlural}
+{ThingNoun}s of {AngryNoun}
 
 {Animal}:
 Raven
@@ -9,6 +10,12 @@ Scorpion
 Dragon
 Phoenix
 Angel
+
+{ThingNoun}:
+Talon
+Sword
+Fist
+Spear
 
 {AngryNoun}:
 Vengence
@@ -19,6 +26,7 @@ Carnage
 {GoodNoun}:
 Honor
 Glory
+Victory
 
 {MarineGroupNounPlural}:
 Guard

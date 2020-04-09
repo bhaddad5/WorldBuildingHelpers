@@ -1,0 +1,42 @@
+
+Combat doctrine (d10)
+1 - "Close Combat"
+1 - "Ranged Combat"
+1 - "Armoured Assault"
+1 - "Stealth"
+1 - "Lightning Strike"
+1 - "Drop Pod"
+1 - "Thunderhawk Assault"
+1 - "Siege"
+1 - "Shock and Awe"
+1 - "Terror"
+
+
+d100 Result	Characteristic Chapter Training
+10 - "The Holy Bolter: The chapter undertakes drill with the bolter and meditative prayer daily, and may combine the two."
+10 - "Mental Bulwark: The chapter's hypno-indoctrination is more thorough than most, leading to strong-willed if inflexible astartes."
+10 - "Warrior Angels: Astartes of this chapter are famously skilled with both gun and sword, but sometimes lacking in more abstract skills."
+10 - "Mens et Manus: This chapter believes in building their brother's minds and bodies to peak performance, the better to be ready for anything."
+10 - "Endure Anything: Training in this chapter emphasizes the need for any squad to be ready to endure any trials they find themselves in. They produce tough, durable brothers with diverse specialties."
+10 - "Duty Unto Death: Astartes of this chapter will readily take on missions others see as suicidal, and soldier through any pain they encounter on the way."
+10 - "Shatter the Foe: This chapter considers the best way to combat the enemy to be fast, powerful strikes which demoralize enemies and inspire allies."
+10 - "Scholar-Knights: All astartes of this chapter are expected to be well-read and treat gathering intelligence as a duty of equal importance to direct destruction of the foe."
+10 - "Shepherd-Marshals: The chaplain's arts are spread well beyond the reclusiam in this chapter, and its brothers inspire those they fight alongside with their stirring rhetoric and skill with the blade."
+10 - "All Paths to Victory: This chapter encourages an unusual degree of freedom in its training, with a result of very diverse skillsets and aptitudes among its astartes."
+
+
+What form do the Chapters' beliefs take? (d100)
+40 - "Revere the Primarch - 'Our Spiritual Liege is better than yours!'"
+25 - "The Emperor Above All - 'Screw your spiritual liege. The big E is where it's at.'"
+10 - "Honour the Ancestors - 'Old members of our Chapter are better than your guys.'"
+5 - "Death Cult - 'SHUT UP YOU GUYS DON'T YOU KNOW WE'RE GOING TO DIE SOME DAY'"
+5 - "Totem Creature - 'You know how we've got a hawk as our Chapter symbol? Yeah, we're going to stick that everywhere.'"
+5 - "Purity of Man - 'Flesh is better than bionics!'"
+5 - "Steel Over Flesh - 'Bionics are better than flesh!'"
+5 - "Esoteric Beliefs - You know our Chapter's beliefs? They're weird."
+
+At what strength is the Chapter? (d10)
+1 - "Endangered: The Chapter numbers only a handful of Companies or less having suffered devastating losses in combat, accident, or dramatic genetic instability. If recovery is even possible it will take many decades, making every Battle-Brother (and his Progenoids) an invaluable resource."
+3 - "Under Strength: The Chapter is recovering from a defeat or accident that occurred several decades ago, or has recently suffered heavy, but not irrecoverable losses. It is probably at a minimum of half strength, and should return to nominal strength within a decade."
+5 - "Normal: The Chapter can field ten full companies, each with ten squads. In all likelihood most every squad consist of ten brethren and some specialised appointments may be empty, but the Chapter is regarded as fully fit for battle."
+1 - "Over Strength: Some Chapters maintain more than the prescribed ten companies, though it is rare for more than a handful more to be fielded and even then only temporarily. It may be that the Emperor’s Tarot has predicted terrible losses ahead, or that the Chapter simply regards its numbers as optimal and cares little for the dictates of the Codex Astartes."
